@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<!-- saved from url=(0086)file:///C:/Users/USER/Downloads/UPDATE1_daftar_modul_aplikasi_lkpi_tristar_apotek.html -->
+<html lang="id"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Modul Aplikasi - LKPI, Trisa Likuid Farma, dan Apotek</title>
+  <style>
+    :root {
+      --primary: #037a3e;
+      --secondary: #5bb868;
+      --accent: #effaed;
+      --border: #d7dee8;
+      --text: #1f2933;
+      --muted: #5f6b7a;
+      --bg: #f7f9fc;
+      --white: #ffffff;
+      --green: #e8f6ef;
+      --orange: #fff4e5;
+      --purple: #f1ecff;
+    }
+    
+    * { box-sizing: border-box; }
+    .edit ){ackground-color: rgb(255, 255, 131);}
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      scroll-behavior: smooth;
+    }
+    
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 24px 56px;
+    }
+    
+    .cover {
+      background: linear-gradient(135deg, var(--primary), #14344f);
+      color: white;
+      padding: 34px 36px;
+      border-radius: 18px;
+      box-shadow: 0 14px 32px rgba(31, 78, 121, 0.22);
+      margin-bottom: 28px;
+    }
+    
+    .cover h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      letter-spacing: 0.2px;
+    }
+    
+    .cover p {
+      margin: 0;
+      max-width: 920px;
+      color: #e9f3fb;
+      font-size: 15px;
+    }
+    
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    
+    .meta-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+     
+    
+    .meta-card h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: var(--primary);
+    }
+    
+    .meta-card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    
+    h2 {
+      margin: 34px 0 12px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      color: rgb(24, 24, 24);
+      font-size: 22px;
+    }
+    
+    h3.section-title {
+      margin: 28px 0 14px;
+      color: rgb(54, 54, 54);
+      font-size: 18px;
+    }
+    
+    .note {
+      background: var(--accent);
+      border-left: 5px solid var(--primary);
+      padding: 14px 16px;
+      border-radius: 10px;
+      margin: 12px 0 24px;
+      color: #24425f;
+      font-size: 14px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: 0 6px 18px rgba(31, 41, 51, 0.04);
+    }
+    
+    th, td {
+      border-bottom: 1px solid var(--border);
+      padding: 12px 14px;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    
+    th {
+      background: #effaed;
+      color: #173b5d;
+      text-align: left;
+      font-weight: 700;
+    }
+
+      
+
+    tr {
+      background: #fdfdfd;
+      transition: 0.4s;
+
+    }
+    tr:hover {
+      background-color: #cfebcb;
+
+    }
+    
+    tr:last-child td { border-bottom: none; }
+    
+    .code {
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      background: #effaed;
+      color: #203040;
+      padding: 3px 7px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+     .code2 {
+      font-family: Consolas, Monaco, 'Courier New', monospace;
+      background: #e3f4ff;
+      color: #203040;
+      padding: 3px 7px;
+      border-radius: 6px;
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #173b5d;
+      background: #e9f2fb;
+      margin: 2px 4px 2px 0;
+    }
+    
+    .badge.shared { background: var(--green); color: #17613b; }
+    .badge.specific { background: var(--orange); color: #8a4b00; }
+    .badge.config { background: var(--purple); color: #4b348c; }
+    
+    .module-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 22px rgba(31, 41, 51, 0.04);
+    }
+    
+    .module-head {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    
+    .module-head h3 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 18px;
+    }
+    
+    .module-desc {
+      margin: 4px 0 12px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    
+    .submodule-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+       .menu-item {
+    color: rgb(248, 82, 5);
+
+}
+    .submodule-list li {
+      border: 1px solid var(--border);
+      background: #fbfcfe;
+      border-radius: 12px;
+      padding: 11px 12px;
+      font-size: 13.5px;
+    }
+    
+    .submodule-list strong {
+      display: block;
+      color: #263b50;
+      margin-bottom: 3px;
+    }
+ 
+    .flow {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    
+    .flow-title {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    
+    .step {
+      background: #edf4fa;
+      border: 1px solid #cbddeb;
+      color: #173b5d;
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    
+    .arrow {
+      color: #6f7d8c;
+      font-weight: 700;
+    }
+    
+    .footer {
+      margin-top: 34px;
+      color: var(--muted  );
+      font-size: 12px;
+      text-align: center;
+    }
+    .collapsible {
+  background-color: #ffffff;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  border: 1px solid var(--border);
+      border-radius: 16px;
+}
+
+.active, .collapsible:hover {
+  background-color: #cfebcb;
+}
+
+.collapsible:after {
+ 
+  color: rgb(94, 94, 94); 
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+  border-radius: 12px;
+}
+
+.active:after {
+  
+  
+}
+
+ .collapsible2 {
+  background-color: #ffffff;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  border: 1px solid var(--border);
+      border-radius: 16px;
+}
+
+.active2, .collapsible2:hover {
+  background-color: #cfebcb;
+}
+
+.collapsible2:after {
+ 
+  color: rgb(94, 94, 94); 
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+  border-radius: 12px;
+}
+
+
+.active2:after {
+  
+  
+}
+
+.content {
+  padding: 0 0px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #ffffff00;
+  
+}
+
+    @media print {
+      body { background: white; }
+      .page { max-width: none; padding: 16px; }
+      .module-card, table, .flow, .meta-card, .cover { box-shadow: none; }
+      .cover { background: var(--primary); print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .submodule-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    
+    @media (max-width: 760px) {
+      .meta { grid-template-columns: 1fr; }
+      .submodule-list { grid-template-columns: 1fr; }
+      .module-head { flex-direction: column; }
+      table { font-size: 12px; }
+      th, td { padding: 10px; }
+      .cover { padding: 24px; }
+    }
+  </style>
+  
+</head>
+<body>
+  <main class="page">
+    <section class="cover">
+      <h1>Daftar Modul Aplikasi
+        <br/>PT. LKPI, CV. Tiga Likuid Plastindo, PT. Trisa Likuid Farma, <br/>dan Apotek Likuid Farma</h1>
+      <p>Dokumen ini merangkum modul utama, modul bersama, modul spesifik per entitas, serta submodul yang diturunkan dari diskusi proses bisnis customer. Fokus awal adalah sebagai bahan penjelasan sistem analis kepada customer sebelum masuk ke detail requirement, database, dan backlog development.</p>
+    </section>
+
+    <section class="meta">
+      <div class="meta-card">
+        <h3>Entitas 1: PT LKPI</h3>
+        <p>Head Office dan manufacturing. Plant 1 (HO) yaitu pabrik produk alat kesehatan cairan dan non cairan, Plant 2 produksi alat kesehatan berbahan metal.
+          PT. LKPI melakukan penjualan ke distributor, baik internal maupun eksternal dan ke retail (Just in case).
+        </p>
+      </div>
+      <div class="meta-card">
+        <h3>Entitas 2: CV. Tiga Likuid Plastindo</h3>
+        <p>Merupakan manufaktur cabang dengan produksi alat kesehatan berbahan plastik. CV. Tiga Likuid mensupplai kebutuhan produksi baik barang setengah jadi / barang jadi ke PT. LKPI.</p>
+      </div>
+      <div class="meta-card menu-item">
+        <h3 >Entitas 3: PT Trisa Likuid Farma</h3>
+        <p>Distributor internal PT. LKPI yang bertugas mendistribusikan dan melakukan penjualan ke outlet/rumah sakit/apotek. PT. Trisa memiliki beberapa cabang. Pembuatan faktur terpusan di HO PT. Trisa Sukoharjo. 
+        </p>
+      </div>
+      <div class="meta-card">
+        <h3>Entitas 4: Apotek / Retail</h3>
+        <p>Retail pharmacy. Menjual produk langsung ke end customer melalui outlet dan POS.</p>
+      </div>
+    </section>
+<h2>1. Vendor Requirement</h2>
+   <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Item</th>
+          <th>Requirement</th>
+          <th>Mandatory</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>1.</td>
+        <td>Legalitas</td>
+        <td>Vendor Harus Berbadan Hukum, melampirkan NIB, Akta Perusahaan dll</td>
+        <td>Must</td>
+        <tr>
+        <td>2.</td>
+        <td>Website</td>
+        <td>Memiliki website</td>
+        <td>Direkomendasikan</td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <td>Team</td>
+        <td>Memiliki Business Analyst, Consultant, Developer, Project Manager, dan Support.</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>4.</td>
+        <td>History</td>
+        <td>Memiliki dan melampirkan history project ERP yang telah dikerjakan.</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>5.</td>
+        <td>Pengambilan Data</td>
+        <td>Onsite.</td>
+        <td>Direkomendasikan</td>
+      </tr>
+      <tr>
+        <td>6.</td>
+        <td>Keuangan</td>
+        <td>Kondisi perusahaan sehat dan mampu mendukung proyek jangka panjang.</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>7.</td>
+        <td>Dukungan</td>
+        <td>Menyediakan SLA, helpdesk, maintenance, dan pelatihan..</td>
+        <td>Must</td>
+      </tr>
+      </table>
+
+   <h2>2. ERP System Requirement</h2>
+   <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Item</th>
+          <th>Requirement</th>
+          <th>Mandatory</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>1.</td>
+        <td>Framework / bahasa Pemrograman</td>
+        <td>PHP CI/Laravel Framework</td>
+        <td>Direkomendasikan</td>
+      </tr>
+      <tr>
+        <td>2.</td>
+        <td>Arsitektur</td>
+        <td>Microservice</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>3.</td>
+        <td>Implementasi</td>
+        <td>Memiliki metodologi implementasi yang jelas.</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>4.</td>
+        <td>Industri</td>
+        <td>Pernah menangani industri yang sama</td>
+        <td>Direkomendasikan</td>
+      </tr>
+      <tr>
+        <td>5.</td>
+        <td>Proses Pembuatan</td>
+        <td>Build dari 0 / Kustomisasi ERP Existing</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>6.</td>
+        <td>Jumlah User</td>
+        <td>Sistem Harus bisa handel 400 user++</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>7.</td>
+        <td>Teknologi </td>
+        <td>Mendukung web, mobile, API, cloud/on-premise, keamanan data.</td>
+        <td>Must</td>
+      </tr>
+       <tr>
+        <td>8.</td>
+        <td>Jenis Pembelian</td>
+        <td>Beli Putus</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>9.</td>
+        <td>Standarisasi</td>
+        <td>Sistem Harus sesuai dengan standar ERP</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>10.</td>
+        <td>Standarisasi Proses Bisnis</td>
+        <td>Multi Company, Multi Branch, Multi Warehouse, Multi Currency, Multi Language, Role & Permission, Workflow Approval, Audit Trail,
+          Notifikasi, Chat, Dashboard, Import/Export Excel, Barcode/QR Code,Batch & Serial Number, Document Attachment, API Integration</td>
+        <td>Must</td>
+      </tr>
+      <tr>
+        <td>11.</td>
+        <td>Dukungan Sistem</td>
+        <td>1 Tahun dukungan sistem setelah go live</td>
+        <td>Must</td>
+      </tr>
+      <tbody>
+        </tbody>
+        </table>
+
+    <h2>3. Modul Bersama dan Modul Spesifik</h2>
+    <div class="note">Modul dengan fungsi yang sama sebaiknya dibuat sebagai shared module atau common platform, lalu dibedakan dengan konfigurasi entitas, role, workflow, dan data area. Modul spesifik dibuat hanya untuk proses yang unik di entitas tertentu.
+      <br/> Daftar Modul ini <i><strong>dibuat bukan sebagai modul maksimal yang perlu dibuat</strong></i>  namun sebagai acuan dan rekomendasi untuk pembuatan sistem.
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Kategori</th>
+          <th>Kode Bersama</th>
+          <th>Nama Modul</th>
+          <th>Dipakai Oleh</th>
+          <th>Deskripsi singkat</th>
+          <th>Catatan Desain</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge shared">Specific</span></td>
+          <td><span class="code">SH-RD</span></td>
+          <td>Research & Development</td>
+          <td>PT. LKPI, CV. Tiga Likuid Plastindo</td>
+          <td>Mengelola proses produk development, permintaan legalitas, hingga master produk, serta menangani berbagai proses yang berkaitan dengan produk yang di produksi mulai dari standar pengujian qc, reproses dst</td>
+          <td>Modul untuk penelitian, pengembangan & Pembaruan produk baru maupun existing.</td>
+        </tr>
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-LE</span></td>
+          <td>Legal</td>
+          <td>LKPI, Tiga Likuid Plastindo</td>
+          <td>Proses legalitasi mulai dari pemenuhan permintaan izin produk & tkdn, monitoring, dan dokumen kontrol. </td>
+          <td>Menu berkaitan dengan legalitas perusahaan, pendaftaran merk, izin produk dst.</td>
+        </tr>
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-INV</span></td>
+          <td>Inventory</td>
+          <td>LKPI, Tiga Likuid Plastindo, Trisa Likuid Farma, Apotek</td>
+          <td>Mengelola stok bahan baku, bahan kemas, produk ruah, produk jadi, dan status persediaan. Termasuk transaksi stok, Master Data, Monitoring Stok dan Pengendalian Persediaan</td>
+          <td>Satu modul stok dengan konfigurasi item type, lokasi, status stok, warehouse, outlet, dan entitas.</td>
+        </tr>
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-WH</span></td>
+          <td>Warehousing</td>
+          <td>LKPI, Tiga Likuid Plastindo, Trisa Likuid Farma</td>
+          <td>Proses dari perencanaan pengiriman hingga barang terkirim ke konsumen (Perencanaan Pengiriman &amp; Armada, Pengambilan Barang+Lokasi barang, Checking sebelum pengiriman, Tracking Pengiriman, Pengajuan biaya Pengiriman,), Pengelolaan lokasi/rak/bin, Cyclecount, Sweeping, Mengelola penerimaan barang,  penyimpanan, karantina, hold, release, dan penyimpanan finished goods.</td>
+          <td>Dipakai untuk penerimaan, penyimpanan, mutasi, picking, issue, dan transfer barang.</td>
+        </tr>
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-OM</span></td>
+          <td>Order Management</td>
+          <td>LKPI, Tiga Likuid Plastindo, Trisa Likuid Farma</td>
+          <td>Mengelola order dari distributor atau pihak terkait, mulai dari PO hingga terbit  Surat Jalan &amp; Faktur (Approval PO, Pembuatan Surat Jalan, Pembuatan Faktur,  Manajemen Pending Produk (Produk Stok Kosong), Sales Return).</td>
+          <td>Satu konsep order, tetapi alur order HO dan distributor perlu workflow berbeda.</td>
+        </tr>
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-FIN</span></td>
+          <td>Finance and Accounting</td>
+          <td>LKPI, Tiga Likuid Plastindo, Trisa Likuid Farma, Apotek</td>
+          <td>Mengelola pencatatan keuangan, transaksi akuntansi, costing, payable, receivable, reporting, tagihan customer.</td>
+          <td>Untuk GL, AR, AP, kas/bank, invoice, laporan keuangan, dan financial report.</td>
+        </tr>
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-SALES</span></td>
+          <td>Marketing and Sales</td>
+          <td>LKPI, Trisa Likuid Farma</td>
+          <td>Mengelola aktivitas marketing, sales order, customer demand, dan koordinasi penjualan dari sisi Head Office dan Trisa.</td>
+          <td>Digunakan untuk aktivitas penjualan, campaign, target, harga, promo, dan program sales.</td>
+        </tr>
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-MS</span></td>
+          <td>Marketing Support</td>
+          <td>LKPI, Trisa Likuid Farma</td>
+          <td>Mengelola aktivitas kunjungan, manajemen support, manajemen produk, manajemen event, manajemen pengajuan dan laporan.</td>
+          <td>Digunakan admin untuk menungajang aktivitas penjualan marketing terkait pengajuan, pendaftaran diskon, insetif dst.</td>
+        </tr>
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-HR</span></td>
+          <td>Human Resource / Employee Management</td>
+          <td>LKPI, Tiga Likuid Plastindo, Trisa Likuid Farma, Apotek</td>
+          <td>Mengelola data karyawan, organisasi, absensi, payroll dan administrasi HR.</td>
+          <td>HR LKPI terdiri atas PT. LKPI, CV. Tiga Likuid Plastindo & Apotek. HR Trisa terdiri atas PT. Trisa saja.</td>
+        </tr>
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-CRM</span></td>
+          <td>Customer Relationship Management</td>
+          <td>Trisa Likuid Farma, Apotek</td>
+          <td>Mengelola hubungan daengan customer terkait riwayat pembelian, program loyalitas, komunikasi, analisis pelanggan & penanganan keluhan.</td>
+          <td>CRM distributor fokus ke customer/channel, CRM apotek fokus ke pelanggan retail/member.</td>
+        </tr>
+         
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-PP</span></td>
+          <td>Production Planning</td>
+          <td>LKPI, Tiga Likuid Plastindo</td>
+          <td>Proses perencanaan produksi, ketersediaan bahan, kebutuhan bahan, hingga pembuatan jadwal produksi.</td>
+          <td>Modul Perencanaan produksi PPIC.</td>
+        </tr>
+       
+        <tr>
+          <td><span class="badge shared">Shared</span></td>
+          <td><span class="code">SH-TK</span></td>
+          <td>Engineering</td>
+          <td>LKPI, Tiga Likuid Plastindo</td>
+          <td>Modul teknisi memuat ketersediaan suku cadang, kegiatan perawatan preventif, dan mengelola pelaksanaan perbaikan mesin.</td>
+          <td>.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge shared">Shared</span></td>
+          <td><span class="code">SH-MFG</span></td>
+          <td>Manufacturing</td>
+          <td>LKPI, Tiga Likuid Plastindo</td>
+          <td>Mengelola proses produksi mulai dari bahan baku menjadi bahan setengah jadi dan barang jadi sampai proses serah terima dengan gudang barang jadi.</td>
+          <td>Proses produksi, produk ruah, produk jadi, QC, QA, dan release.</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge shared">Shared</span></td>
+          <td><span class="code">SH-QC</span></td>
+          <td>Quality Control</td>
+          <td>LKPI, Tiga Likuid Plastindo</td>
+          <td>QC menjalankan pemeriksaan sampling material yang diterima (bahan baku, bahan kemas, produk repack), produk ruah, produk jadi dan product return. Mengelola gudang reject. Inventarisasi alat.</td>
+          <td>Modul QC terintegrasi dengan modul Purchasing dan Manufacturing</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge shared">Shared</span></td>
+          <td><span class="code">SH-WA</span></td>
+          <td>Quallity Assurance</td>
+          <td>LKPI, Tiga Likuid Plastindo</td>
+          <td>Memastikan setiap step telah sesuai dengan standar.</td>
+          <td>QA melakukan pengecekan akhir terhadap produk jadi yang berada dalam status karantina/hold, lalu memberikan approval release. Memberikan approval permintaan sampel. Kontrol Dokumen & SOP.</td>
+        </tr>
+        <tr>
+          <td><span class="badge specific">Specific</span></td>
+          <td><span class="code">LKPI-PE</span></td>
+          <td>Product Executive</td>
+          <td>LKPI</td>
+          <td>Mengelola kebutuhan marketing terkait sampel, event, pembuatan laporan penjualan perproduk, Top 10, Bottom 10.</td>
+          <td>Spesifik proses aktivitas manajemen kunjungan, manajemen support, manajemen produk, manajemen event, manajemen pengajuan dan laporan. </td>
+        </tr>
+        <tr>
+          <td><span class="badge specific">Specific</span></td>
+          <td><span class="code">APT-POS</span></td>
+          <td>POS System</td>
+          <td>Apotek</td>
+          <td>Mengelola data karyawan, organisasi, absensi, dan administrasi HR.</td>
+          <td>Spesifik transaksi kasir dan penjualan retail.</td>
+        </tr>
+        <tr>
+          <td><span class="badge specific">Specific</span></td>
+          <td><span class="code">APT-MO</span></td>
+          <td>Multi Outlet</td>
+          <td>Apotek</td>
+          <td>Mengelola data karyawan, organisasi, absensi, dan administrasi HR.</td>
+          <td>Spesifik pengelolaan banyak outlet retail.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>4. Submodul Berdasarkan Hasil Diskusi Proses Bisnis Customer</h2>
+
+    <h3 class="section-title">4.1 PT LKPI / Head Office / Manufacturing</h3>
+    
+<div class="module-head collapsible" id="modullkpi">
+        <h3><span class="code">SH-RD</span> Research & Development</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Submodul ini mewakili proses awal sebelum perencanaan dan pengadaan material. R&amp;D dan Legal menjalankan proses penelitian produk serta perizinan yang diperlukan.</p>
+      <ul class="submodule-list">
+        <li><strong>Product Research</strong> Pencatatan proses develop mulai dari approval usulan pembuatan produk baru, proses penelitian, Rencana Desain &amp; Pengembangan, Setting Timeline, Trial, formulasi awal, spesifikasi produk, trial, dan dokumen pendukung pengembangan.</li>
+        <li  ><strong>Production Reformulation</strong> Berisi usulan perubahan reformulasi produk existing, penyusunan formulasi baru, pengadaan bahan, trial, pengujian, release.</li>
+        <li><strong>Regulatory and Legal Permit</strong> Pengelolaan proses perizinan, legal document, approval, dan status kelengkapan izin produk.</li>
+        <li  ><strong >Product Master</strong> Persiapan data master produk setelah proses develop selesai (BOM, Routing, Routing Operation, Workstation, dst), Pembuatan Standar Pengujian (Produk Jadi, BB / BK).</li>
+        <li  ><strong>Material Planning</strong> Purchase Request, Material Request</li>
+        <li  ><strong>Inventory Control (R&D)</strong> Stock Overview, Expiry Monitoring, Inventory Report, Kartu Stock, Incoming Material</li>
+        <li><strong>Document Control</strong> Penyimpanan dokumen hasil R&amp;D, legal, spesifikasi, revisi, dan histori perubahan.</li>
+              </ul>
+      <h3><span class="code2">User : R&D & Legal Department</span></h3>
+    </div></div>
+       
+<div class="module-head collapsible" id="modullkpi">
+        <h3><span class="code">SH-LE</span> Legal Process</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Submodul ini mewakili proses pendaftaran, monitoring database izin produk, tkdn, dokumen control dst.</p>
+      <ul class="submodule-list">
+        <li><strong>Regulatory and Legal Permit</strong> Pengelolaan proses perizinan, legal document, approval, dan status kelengkapan izin produk.</li>
+        <li><strong>Document Control</strong> Penyimpanan dokumen hasil R&amp;D, legal, spesifikasi, revisi, dan histori perubahan.</li>
+              </ul>
+      <h3><span class="code2">User : R&D & Legal Department</span></h3>
+    </div></div>
+    
+
+
+<div class="module-head collapsible">
+        <h3><span class="code">SH-IV</span> Inventory Management</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">PPIC menjadi penghubung antara kebutuhan produksi, pemesanan bahan, penerimaan stok material, dan serah terima material ke tim produksi.</p>
+       <ul class="submodule-list">
+        <li><strong>Master Data</strong> Item Master, Item Group, Gudang, UOM.</li>
+        <li><strong>Transaksi Masuk</strong> Penerimaan barang jadi, penerimaan bahan baku, bahan kemas, putaway, .</li>
+        <li><strong>Quality Control</strong> Quality Control Request, Quality Control Report.</li>
+        <li><strong>QC Approved Material Receipt</strong> Penerimaan material yang sudah lulus QC menjadi stok bahan baku atau bahan kemas.</li>
+        <li><strong>Material Handover to Production</strong> Serah terima bahan yang sudah disetujui QC dari PPIC ke tim produksi.</li>
+        <li><strong>Production Coordination</strong> Monitoring kesiapan material, jadwal produksi, dan status proses antar departemen.</li>
+        <li  ><strong>Material Planning</strong> Purchase Request, Purchase Order, Purchase Receipt, Purchase Return, Purchase Monitoring, Material Request</li>
+        <li  ><strong>Inventory Control (Raw)</strong> Stock Overview, Expiry Monitoring, Inventory Report, Kartu Stock, Picking, Incoming Material, Putaway, Master Gudang</li>
+        <li  ><strong>Production Control</strong>Work Order, Production Schedule, Production Progress, Production Report, Production Forecast</li>
+        <li  ><strong>Report</strong>Production Report, Purchase Report, Inventory Report</li>
+        
+      </ul>
+      <h3><span class="code2">User : PPIC & Logistik</span></h3>
+    </div></div>
+
+<div class="module-head collapsible">
+        <h3><span class="code">SH-PP</span> Production Planning / PPIC</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">PPIC menjadi penghubung antara kebutuhan produksi, pemesanan bahan, penerimaan stok material, dan serah terima material ke tim produksi.</p>
+       <ul class="submodule-list">
+        <li><strong>Production Plan</strong> Perencanaan produksi berdasarkan kebutuhan demand, ketersediaan material, dan kapasitas pabrik metal/plastik..</li>
+        <li><strong>Material Requirement Planning</strong> Perhitungan kebutuhan bahan baku dan bahan kemas untuk proses produksi.</li>
+        <li><strong>Raw Material and Packaging Order</strong> Proses pemesanan bahan baku dan bahan kemas oleh PPIC.</li>
+        <li><strong>QC Approved Material Receipt</strong> Penerimaan material yang sudah lulus QC menjadi stok bahan baku atau bahan kemas.</li>
+        <li><strong>Material Handover to Production</strong> Serah terima bahan yang sudah disetujui QC dari PPIC ke tim produksi.</li>
+        <li><strong>Production Coordination</strong> Monitoring kesiapan material, jadwal produksi, dan status proses antar departemen.</li>
+        <li  ><strong>Material Planning</strong> Purchase Request, Purchase Order, Purchase Receipt, Purchase Return, Purchase Monitoring, Material Request</li>
+        <li  ><strong>Inventory Control (Raw)</strong> Stock Overview, Expiry Monitoring, Inventory Report, Kartu Stock, Picking, Incoming Material, Putaway, Master Gudang</li>
+        <li  ><strong>Production Control</strong>Work Order, Production Schedule, Production Progress, Production Report, Production Forecast</li>
+        <li  ><strong>Report</strong>Production Report, Purchase Report, Inventory Report</li>
+        
+      </ul>
+      <h3><span class="code2">User : PPIC</span></h3>
+    </div></div>
+
+<div class="module-head collapsible">
+        <h3><span class="code">SH-MFG</span> Manufacturing</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Modul manufacturing mengelola proses produksi setelah material diterima dari PPIC sampai menjadi produk ruah dan produk jadi.</p>
+       <ul class="submodule-list">
+        <li  ><strong>Production Monitoring</strong> Infografis monitoring proses produksi.</li>
+        <li><strong>Material Receive from PPIC</strong> Penerimaan bahan dari PPIC sebagai dasar untuk memulai proses produksi.</li>
+        <li><strong>Production Execution</strong> Pencatatan aktivitas produksi, tahapan proses, output, dan status pekerjaan produksi.</li>
+        <li><strong>Bulk Product Processing</strong> Pembuatan produk ruah sebelum dilanjutkan ke tahapan produk jadi.</li>
+        <li><strong>Bulk Product QC Request</strong> Permintaan sampling QC untuk produk ruah.</li>
+        <li><strong>Finished Goods Processing</strong> Proses lanjutan dari produk ruah menjadi produk jadi.</li>
+        <li><strong>Finished Goods QC Request</strong> Permintaan sampling QC untuk produk jadi sebelum masuk proses QA release.</li>
+        <li  ><strong>Finished Goods Transfer</strong> Proses transfer produk jadi ke gudang.</li>
+        <li  ><strong>Finished Goods QA Request</strong> Permintaan Review Dokumentasi untuk karantina produk jadi menjadi release.</li>
+        <li  ><strong>Production Control</strong> Master Workstation, Workstation operation, Work Order, Production Schedule, Production Progress, Production Report, Production.</li>
+        <li  ><strong>Production Reproses</strong> Pengelolaan proses reproses produksi yang tidak memenuhi spesifikasi.</li>
+      </ul>
+      <h3><span class="code2">User : Produksi, RnD, QC, QA</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible">
+        <h3><span class="code">SH-TK</span> Engineering</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Modul teknik mengelola ketersediaan suku cadang, kegiatan perawatan preventif, dan mengelola pelaksanaan perbaikan mesin.</p>
+       
+      <ul class="submodule-list">
+        <li  ><strong>Master Asset / Equipment</strong> Pencatatan aset perlengkapan, suku cadang dst.</li>
+        <li  ><strong>Preventive Maintenance</strong> Melakukan perawatan preventif sesuai jadwal yang ditetapkan.</li>
+        <li  ><strong>Corrective Maintenance</strong> Melakukan perbaikan mesin yang mengalami kerusakan untuk memastikan proses produksi berjalan lancar serta penugasan.</li>
+      <li><strong>Project Management Engineering</strong> Pengelolaan proyek dan tugas seperti instalasi mesin, pengadaan mesin baru, penerimaan mesin baru.</li></ul>
+      <h3><span class="code2">User : Produksi, RnD, QC, QA</span></h3>
+    </div></div>
+
+ <div class="module-head collapsible">
+        <h3><span class="code">SH-QC</span> Quality Control</h3>
+       <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">QC menjalankan pemeriksaan sampling pada tiga titik utama, yaitu material yang diterima, produk ruah, dan produk jadi.</p>
+       
+      <ul class="submodule-list">
+        <li><strong>Master Data QC</strong> Pengelolaan standar pengujian oleh QC.</li>
+        <li><strong>Incoming Material Sampling</strong> QC sampling atas barang yang diterima dari proses gudang/logistik.</li>
+        <li><strong>Incoming Material QC Result</strong> Pencatatan hasil QC material, termasuk pass, fail, atau perlu tindakan lanjutan.</li>
+        <li><strong>Bulk Product Sampling</strong> QC sampling untuk produk ruah setelah proses produksi awal.</li>
+        <li><strong>Finished Goods Sampling</strong> QC sampling untuk produk jadi sebelum masuk ke proses karantina dan QA.</li>
+        <li><strong>QC Result and History</strong> Penyimpanan hasil pemeriksaan, status, catatan, dan histori QC.</li>
+        <li><strong>QC Approval Interface</strong> Informasi status QC yang menjadi dasar PPIC, Produksi, Gudang, dan QA untuk melanjutkan proses.</li>
+        <li><strong>Retain Sample</strong> Mengelola arsip sampel setiap batch.</li>
+        <li><strong>Non Conformance</strong> Mengelola pencatatan data ketidaksesuaian, penyimpangan proses, CAPA.</li>
+        <li><strong>Aset Management</strong> Mengelola aset departemen QC.</li>
+      </ul>
+      <h3><span class="code2">User : Produksi, RnD, QC, QA</span></h3>
+    </div></div>
+
+<div class="module-head collapsible">
+        <h3><span class="code">SH-QA</span> Quality Assurance</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">QA melakukan pengecekan akhir terhadap produk jadi yang berada dalam status karantina/hold, lalu memberikan approval release.</p>
+      <ul class="submodule-list">
+        <li><strong>Finished Goods Review</strong> Review data produk jadi, hasil QC, dokumen produksi, dan kelengkapan release.</li>
+        <li><strong>Quarantine Hold Review</strong> Pemeriksaan produk jadi yang berada dalam status hold/karantina.</li>
+        <li><strong>QA Approval and Release</strong> Approval QA untuk mengubah status produk jadi dari hold menjadi released.</li>
+        <li><strong>Release Certificate and Record</strong> Pencatatan hasil release, tanggal release, user approval, dan dokumen pendukung.</li>
+        <li  ><strong>CAPA</strong> untuk menangani tindakan perbaikan dan pencegahan terhadap masalah yang ditemukan. CAPA Request, Investigasi, Root cause, Action Plan, Effectiveness Check, Closure.</li>
+        <li  ><strong>Document Control</strong> mengelola seluruh dokumen mutu perusahaan, mulai dari pembuatan, review, approval, distribusi, revisi, hingga pengarsipan dokumen yang sudah tidak berlaku.</li>
+        <li  ><strong>Complaint Management</strong> mengelola dan penanganan keluhan pelanggan terkait produk, Complain request, investigasi, Respon, Closure.</li>
+        <li  ><strong>Training Management</strong> Mengelola pelatihan kompetensi karyawan berkaitan dengan sistem mutu, Metrik pelatihan, Jadwal pelatihan, Kehadiran, Riwayat Pelatihan.</li>
+      </ul>
+      <h3><span class="code2">User : Produksi, RnD, QC, QA</span></h3>
+    </div></div>
+
+<div class="module-head collapsible">
+        <h3><span class="code">LKPI-WH</span> Warehousing and Logistics</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Gudang PJ dan logistik mengelola penerimaan barang, penyimpanan, karantina produk jadi, serta penyimpanan finished goods setelah release.</p>
+      <ul class="submodule-list">
+<li><strong>Incoming Goods Receipt</strong> Penerimaan bahan baku dan bahan kemas dari supplier atau proses pengadaan.</li>
+        <li><strong>Goods Receipt Inspection Flow</strong> Alur penerimaan barang sebelum QC sampling dilakukan.</li>
+        <li><strong>Warehouse Putaway</strong> Penempatan barang ke lokasi gudang setelah status barang memenuhi ketentuan.</li>
+        <li><strong>Released Finished Goods Storage</strong> Penyimpanan produk jadi setelah disetujui dan di-release oleh QA.</li>
+        <li><strong>Inventory Movement</strong> Mutasi stok antar lokasi, status, dan departemen.</li>
+        <li><strong>Cyclecount</strong> Alur pengecekan stok gudang suesuai penjadwalan.</li>
+        <li><strong>Sweeping</strong> Pengelolaan temuan yang ada di gudang.</li>
+        <li><strong>Branch Warehouse Stock</strong> Pengelolaan stok per cabang atau lokasi gudang.</li>
+        <li><strong>Picking and Dispatch</strong> Pengambilan dan pengeluaran barang untuk dikirim ke customer/retail.</li>
+        <li><strong>Stock Transfer</strong> Mutasi stok antar cabang atau antar gudang bila diperlukan.</li>
+      </ul>
+      <h3><span class="code2">User : Logistik, PPIC</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible">
+        <h3><span class="code">LKPI-OM</span> Order Management</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Order Management di Head Office mendukung kebutuhan supply ke distributor, order dari cabang/distributor, dan koordinasi fulfillment dari stok produk jadi.</p>
+      <ul class="submodule-list">
+        <li><strong>Distributor Order Intake</strong> Penerimaan order dari distributor atau cabang distribusi.</li>
+        <li><strong>Stock Availability Check</strong> Pengecekan ketersediaan finished goods yang sudah released.</li>
+        <li><strong>Order Fulfillment</strong> Proses pemenuhan order berdasarkan stok, prioritas, dan jadwal pengiriman.</li>
+        <li><strong>Delivery Coordination</strong> Koordinasi dengan logistik untuk pengiriman ke distributor atau cabang.</li>
+        <li  ><strong>Purchase Return</strong> Mengelola retur pembelian, retur secara administrasi, tukar barang, pengembalian barang.</li>
+      </ul>
+      <h3><span class="code2">User : logistik, marketing</span></h3>
+    </div></div>
+<div class="module-head collapsible2">
+        <h3><span class="code">LKPI-MS</span> Marketing &amp; Sales</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      
+      <p class="module-desc">Mendukung aktivitas sales distributor, termasuk program penjualan, DPF, cashback, pricing, dan customer channel.</p>
+     <ul class="submodule-list">
+          <li><strong>Dashboard</strong>
+          Sales / Penjualan : Berisi infografis Sales (Target vs Realisasi, Sales Perbulan, Sales Tim (spv, asm, nsm)), data COR vs Penjualan
+               <br/> 
+          Agenda : Absensi hari ini, Kunjungan Hari ini, Agenda & Event, Presensi Bulan ini
+              <br/> 
+          Approval : Menu permintaan approval.
+              </li>
+        
+        <li><strong>Presensi</strong>Menu untuk absensi masuk, keluar, izin, aproval izin lengkap dengan foto & sharelok</li>
+        <li><strong>Visit Plan</strong>Berisi infografis kunjungan yang dilakukan, Penjadwalan kunjungan, Plan Kunjungan Luar Kota, Kunjungan Unplan, Laporan Kunjungan</li>
+        <li><strong>Manajemen Tim</strong>Info Grafis & Laporan penjualan per team. Laporan absensi tim Laporan Kunjungan Tim. Laporan aktivitas event. Alokasi Target Tim.Daftar Anggota Tim.</li>
+        <li><strong>Sales Area</strong>Informasi Target Bulan ini, Target Tahun ini.
+        <br/> Realisasi Penjualan Bulan ini. Realisasi Penjualan Tahun ini
+        <br/> Pengeluaran marketing Support Dana, Expense, Entertain, UC, dst.
+        <br/> List Penjualan per distributor.</li>
+        <li><strong>Sales Order</strong>Form input Sales Order marketing ke distributor trisa & monitoring PO, termasuk batasan diskon dan menu pengajuan jika diskon melebihi maksimal melalui menu DPF, Daftar Stok Produk Trisa & HO, Aging Stok Distributor.</li>
+        <li><strong>Manajemen Pengajuan</strong>Mengelola pengajuan (supprot dana, dpf,uc dst), realisasi dan monitoring status pengajuan.</li>
+        <li><strong>Marketing Support</strong>Mengelola Permintaan Sampel, Gimik, &amp; Support Produk, serta monitoring permintaan</li>
+        <li><strong>Purchase Order</strong>Form input PO ke distributor trisa &amp; monitoring PO.</li>
+        <li><strong>DPF Data</strong> Menu pengajuan diskon baik diskon on faktur maupun cashback, berlaku aproval berjenjang & tracking proses pengajuan.
+        <br/> Menu Monitoring Pengajuan dpf
+        <br/> Menu Laporan Histoy DPF lengkap dengan status</li>
+      
+      <li><strong>Support Produk</strong>Berisi menu input komplain produk dan monitoring komplain.</li>
+    <li><strong>Manajemen Event</strong>Mengelola event yang dinisiasi marketing, mulai dari  perencanaan, jenis event, penunjukan pic, orang yang terlibat, calendar event, monitoring event.</li>
+   <li><strong>Customer</strong>Menu input user dan outlet baru</li>
+   <li><strong>Laporan</strong>Menampilkan laporan penjualan, laporan aktivitas, laporan pengajuan, laporan forecast, dan lain-lain.</li>
+      </ul>
+      <h3><span class="code2">User : Marketing</span></h3>
+    </div></div>
+  
+
+    <div class="module-head collapsible">
+        <h3><span class="code">LKPI-MSU</span> Marketing Support</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Modul Product Executive mengelola aktivitas kunjungan, manajemen support, manajemen produk, manajemen event, manajemen pengajuan dan laporan.</p>
+      <ul class="submodule-list">
+        <li><strong>Dashboard</strong>Infografis terkait support marketing berdasarkan jobdesk.</li>
+        <li><strong>Presensi</strong>Mengelola data presensi marketing, terkain absensi dan kunjungan.</li>
+        <li><strong>Akomodasi</strong>Mengelola permintaan terkait akomodasi, mulai dari approval, pemesanan tiket, pembayaran, refund, report</li>
+        <li><strong>Rekap Sales</strong>Mengelola data rekap sales dari distributor rekanan.</li>
+        <li><strong>UP Country</strong>Mengelola data kunjungan luar kota, mulai dari plan kunjungan, pengajuan, realisasi, dan pertambahan biaya</li>
+        <li><strong>Manajemen Pengajuan</strong>Mengelola pengajuan / reimburse mulai dari approval, pencairan, realisasi dan rekap.</li>
+        <li><strong>Aging Stok</strong>Mengelola data produk aging di stok distributor serta pengelolaan relokasi produk.</li>
+        <li><strong>DPF</strong>Mengelola data DPF (Discount Proposal Form) mulai dari approval pengajuan, rekap, pengajuan ke pihak distributor.</li>
+      </ul>
+      <h3><span class="code2">User : Admin Marketing</span></h3>
+    </div></div>
+
+<div class="module-head collapsible">
+        <h3><span class="code">LKPI-PE</span> Product Executive</h3>
+        <span class="badge specific">LKPI Specific</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Modul Product Executive mengelola aktivitas kunjungan, manajemen support, manajemen produk, manajemen event, manajemen pengajuan dan laporan.</p>
+      <ul class="submodule-list">
+        <li><strong>Visit Plan</strong>Mengelola aktivitas jadwal kunjungan penjualan dan aktivitas kunjungan penjualan.</li>
+        <li><strong>Support</strong>Mengelola aktivitas overview support, overview media promosi, overview sample dan monitoringnya.</li>
+        <li><strong>Product Management</strong>Mengelola aktivititas rincial penjualan produk, laporan trend penjualan, forecast produk dan monitoring komplain produk.</li>
+        <li><strong>Event Management</strong>Mengelola kalender event, informasi perhitungan event, penjadwalan agenda dan monitoringnya.</li>
+        <li><strong>Request Management</strong>Mengelola infografis, pengajuan dana kunjungan beserta monitoring dan realisasinya, akomodasi, pengajuan expense beserta monitoring, pengajuan support dana beserta monitoring dan realisasinya.</li>
+        <li><strong>Report</strong>Menampilkan laporan penjualan, laporan aktivitas, laporan pengajuan, laporan forecast , dan lain-lain.</li>
+      </ul>
+      <h3><span class="code2">User : Product Executive</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible">
+        <h3><span class="code">LKPI-FA</span> Finance & Accounting</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      <p class="module-desc">Modul pengelolaan Finance</p>
+      <ul class="submodule-list">
+        <li><strong>Dashboard</strong>Mengelola aktivitas jadwal kunjungan penjualan dan aktivitas kunjungan penjualan.</li>
+        <li><strong>Cash Management</strong>Pengelolaan Cash Account, Bank Account, Fund Transfer.</li>
+        <li><strong>Account Receivable (Piutang)</strong>Tagihan customer, penerimaan pembayaran dan Umur Piutang.</li>
+        <li><strong>Account Payable (Hutang)</strong>Tagihan supplier, Pembayaran, Umur Hutang.</li>
+        <li><strong>Budget Management</strong>Pengelolaan budget pencairan, Budget Monitoring.</li>
+        <li><strong>Cash Flow</strong>Uang masuk dan keluar, Laporan.</li>
+      </ul>
+      <hr/>
+      <p class="module-desc">Modul pengelolaan Accounting</p>
+      <ul class="submodule-list">
+        <li><strong>Chart of Accounts (COA)n</strong>Pengelolaan daftar akun perusahaan seperti Aset, Liability, Equity, Revenue, Exspense</li>
+        <li><strong>Journal Entry</strong>Pengelolaan jurnal manual.</li>
+        <li><strong>General Ledger</strong>Pengelolaan pusat biaya.</li>
+        <li><strong>Fixed Aset</strong>Pengelolaan aset dan penyusutan.</li>
+        <li><strong>Inventory Valuation</strong>Nilai persediaan.</li>
+        <li><strong>Tax Management</strong>Pengelolaan pajak.</li>
+        <li><strong>Period Closing</strong>Pengelolaan tutup buku.</li>
+        <li><strong>Financial Report</strong>Neraca saldo, Laba Rugi, Neraca, Arus Kas, Buku Besar.</li>
+      </ul>
+      <h3><span class="code2">User : Finance & Accounting</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible">
+        <h3><span class="code">LKPI-HR</span> Human Resources</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      
+      <p class="module-desc">Modul HR automisasi dan pengelolaan seluruh siklus hidup karyawan.</p>
+     <ul class="submodule-list">
+        <li><strong>Dashboard</strong>Mengelola aktivitas jadwal kunjungan penjualan dan aktivitas kunjungan penjualan.</li>
+        <li><strong>Master Data Karyawan</strong>Employee, Department, Designation, Branch, Employment type, Shift Type, </li>
+        <li><strong>Payroll</strong>Komponen gaji, struktur gaji, generate gaji, Slip gaji, Jurnal gaji</li>
+        <li><strong>Attendance</strong>Mengelola absensi karyawan.</li>
+        <li><strong>Leave Management</strong>Alokasi cuti, Aturan cuti, pengajuan cuti, approval cuti, Pengelolaan izin, cuti dst</li>
+        <li><strong>Overtime</strong>Pengajuan lembur, persetujuan lembur, perhitungan lembur.</li>
+        <li><strong>Employee Loan & Advance</strong>Pengelolaan kasbon, pinjaman, potongan cicilan.</li>
+        <li><strong>Training Management</strong>Pengelolaan program pelatihan, program pelatihan, jadwal pelatihan, kalender pelatihan, daftar hadir, evaluasi training, riwayat pelatihan.</li>
+      <li><strong>Asset Management</strong>Peminjaman aset, pengembalian aset.</li>
+      <li><strong>Employee Lifecycle</strong>Mutasi karyawan, promosi, perubahan status, Resign & PHK, Perhitungan hak resign.</li>
+    </ul>
+      <h3><span class="code2">User : HR</span></h3>
+    </div></div>
+ <h3 class="section-title">4.2 CV Tiga Likuid Plastindo / Manufacturing</h3>
+    
+<div class="module-head collapsible" id="modullkpi">
+        <h3><span class="code">SH-RD</span> Research & Development</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Submodul ini mewakili proses awal sebelum perencanaan dan pengadaan material. R&amp;D dan Legal menjalankan proses penelitian produk serta perizinan yang diperlukan.</p>
+      <ul class="submodule-list">
+        <li><strong>Product Research</strong> Pencatatan proses develop mulai dari approval usulan pembuatan produk baru, proses penelitian, Rencana Desain &amp; Pengembangan, Setting Timeline, Trial, formulasi awal, spesifikasi produk, trial, dan dokumen pendukung pengembangan.</li>
+        <li  ><strong>Production Reformulation</strong> Berisi usulan perubahan reformulasi produk existing, penyusunan formulasi baru, pengadaan bahan, trial, pengujian, release.</li>
+        <li><strong>Regulatory and Legal Permit</strong> Pengelolaan proses perizinan, legal document, approval, dan status kelengkapan izin produk.</li>
+        <li  ><strong >Product Master</strong> Persiapan data master produk setelah proses develop selesai (BOM, Routing, Routing Operation, Workstation, dst), Pembuatan Standar Pengujian (Produk Jadi, BB / BK).</li>
+        <li  ><strong>Material Planning</strong> Purchase Request, Material Request</li>
+        <li  ><strong>Inventory Control (R&D)</strong> Stock Overview, Expiry Monitoring, Inventory Report, Kartu Stock, Incoming Material</li>
+        <li><strong>Document Control</strong> Penyimpanan dokumen hasil R&amp;D, legal, spesifikasi, revisi, dan histori perubahan.</li>
+              </ul>
+      <h3><span class="code2">User : R&D & Legal Department</span></h3>
+    </div></div>
+       
+<div class="module-head collapsible" id="modullkpi">
+        <h3><span class="code">SH-LE</span> Legal Process</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Submodul ini mewakili proses pendaftaran, monitoring database izin produk, tkdn, dokumen control dst.</p>
+      <ul class="submodule-list">
+        <li><strong>Regulatory and Legal Permit</strong> Pengelolaan proses perizinan, legal document, approval, dan status kelengkapan izin produk.</li>
+        <li><strong>Document Control</strong> Penyimpanan dokumen hasil R&amp;D, legal, spesifikasi, revisi, dan histori perubahan.</li>
+              </ul>
+      <h3><span class="code2">User : R&D & Legal Department</span></h3>
+    </div></div>    
+
+<div class="module-head collapsible">
+        <h3><span class="code">SH-IV</span> Inventory Management</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">PPIC menjadi penghubung antara kebutuhan produksi, pemesanan bahan, penerimaan stok material, dan serah terima material ke tim produksi.</p>
+       <ul class="submodule-list">
+        <li><strong>Master Data</strong> Item Master, Item Group, Gudang, UOM.</li>
+        <li><strong>Transaksi Masuk</strong> Penerimaan barang jadi, penerimaan bahan baku, bahan kemas, putaway, .</li>
+        <li><strong>Quality Control</strong> Quality Control Request, Quality Control Report.</li>
+        <li><strong>QC Approved Material Receipt</strong> Penerimaan material yang sudah lulus QC menjadi stok bahan baku atau bahan kemas.</li>
+        <li><strong>Material Handover to Production</strong> Serah terima bahan yang sudah disetujui QC dari PPIC ke tim produksi.</li>
+        <li><strong>Production Coordination</strong> Monitoring kesiapan material, jadwal produksi, dan status proses antar departemen.</li>
+        <li  ><strong>Material Planning</strong> Purchase Request, Purchase Order, Purchase Receipt, Purchase Return, Purchase Monitoring, Material Request</li>
+        <li  ><strong>Inventory Control (Raw)</strong> Stock Overview, Expiry Monitoring, Inventory Report, Kartu Stock, Picking, Incoming Material, Putaway, Master Gudang</li>
+        <li  ><strong>Production Control</strong>Work Order, Production Schedule, Production Progress, Production Report, Production Forecast</li>
+        <li  ><strong>Report</strong>Production Report, Purchase Report, Inventory Report</li>
+        
+      </ul>
+      <h3><span class="code2">User : PPIC & Logistik</span></h3>
+    </div></div>
+
+<div class="module-head collapsible">
+        <h3><span class="code">SH-PP</span> Production Planning / PPIC</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">PPIC menjadi penghubung antara kebutuhan produksi, pemesanan bahan, penerimaan stok material, dan serah terima material ke tim produksi.</p>
+       <ul class="submodule-list">
+        <li><strong>Production Plan</strong> Perencanaan produksi berdasarkan kebutuhan demand, ketersediaan material, dan kapasitas pabrik metal/plastik..</li>
+        <li><strong>Material Requirement Planning</strong> Perhitungan kebutuhan bahan baku dan bahan kemas untuk proses produksi.</li>
+        <li><strong>Raw Material and Packaging Order</strong> Proses pemesanan bahan baku dan bahan kemas oleh PPIC.</li>
+        <li><strong>QC Approved Material Receipt</strong> Penerimaan material yang sudah lulus QC menjadi stok bahan baku atau bahan kemas.</li>
+        <li><strong>Material Handover to Production</strong> Serah terima bahan yang sudah disetujui QC dari PPIC ke tim produksi.</li>
+        <li><strong>Production Coordination</strong> Monitoring kesiapan material, jadwal produksi, dan status proses antar departemen.</li>
+        <li  ><strong>Material Planning</strong> Purchase Request, Purchase Order, Purchase Receipt, Purchase Return, Purchase Monitoring, Material Request</li>
+        <li  ><strong>Inventory Control (Raw)</strong> Stock Overview, Expiry Monitoring, Inventory Report, Kartu Stock, Picking, Incoming Material, Putaway, Master Gudang</li>
+        <li  ><strong>Production Control</strong>Work Order, Production Schedule, Production Progress, Production Report, Production Forecast</li>
+        <li  ><strong>Report</strong>Production Report, Purchase Report, Inventory Report</li>
+        
+      </ul>
+      <h3><span class="code2">User : PPIC</span></h3>
+    </div></div>
+
+<div class="module-head collapsible">
+        <h3><span class="code">SH-MFG</span> Manufacturing</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Modul manufacturing mengelola proses produksi setelah material diterima dari PPIC sampai menjadi produk ruah dan produk jadi.</p>
+       <ul class="submodule-list">
+        <li  ><strong>Production Monitoring</strong> Infografis monitoring proses produksi.</li>
+        <li><strong>Material Receive from PPIC</strong> Penerimaan bahan dari PPIC sebagai dasar untuk memulai proses produksi.</li>
+        <li><strong>Production Execution</strong> Pencatatan aktivitas produksi, tahapan proses, output, dan status pekerjaan produksi.</li>
+        <li><strong>Bulk Product Processing</strong> Pembuatan produk ruah sebelum dilanjutkan ke tahapan produk jadi.</li>
+        <li><strong>Bulk Product QC Request</strong> Permintaan sampling QC untuk produk ruah.</li>
+        <li><strong>Finished Goods Processing</strong> Proses lanjutan dari produk ruah menjadi produk jadi.</li>
+        <li><strong>Finished Goods QC Request</strong> Permintaan sampling QC untuk produk jadi sebelum masuk proses QA release.</li>
+        <li  ><strong>Finished Goods Transfer</strong> Proses transfer produk jadi ke gudang.</li>
+        <li  ><strong>Finished Goods QA Request</strong> Permintaan Review Dokumentasi untuk karantina produk jadi menjadi release.</li>
+        <li  ><strong>Production Control</strong> Master Workstation, Workstation operation, Work Order, Production Schedule, Production Progress, Production Report, Production.</li>
+        <li  ><strong>Production Reproses</strong> Pengelolaan proses reproses produksi yang tidak memenuhi spesifikasi.</li>
+      </ul>
+      <h3><span class="code2">User : Produksi, RnD, QC, QA</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible">
+        <h3><span class="code">SH-TK</span> Engineering</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Modul teknik mengelola ketersediaan suku cadang, kegiatan perawatan preventif, dan mengelola pelaksanaan perbaikan mesin.</p>
+       
+      <ul class="submodule-list">
+        <li  ><strong>Master Asset / Equipment</strong> Pencatatan aset perlengkapan, suku cadang dst.</li>
+        <li  ><strong>Preventive Maintenance</strong> Melakukan perawatan preventif sesuai jadwal yang ditetapkan.</li>
+        <li  ><strong>Corrective Maintenance</strong> Melakukan perbaikan mesin yang mengalami kerusakan untuk memastikan proses produksi berjalan lancar serta penugasan.</li>
+      <li><strong>Project Management Engineering</strong> Pengelolaan proyek dan tugas seperti instalasi mesin, pengadaan mesin baru, penerimaan mesin baru.</li></ul>
+      <h3><span class="code2">User : Produksi, RnD, QC, QA</span></h3>
+    </div></div>
+
+ <div class="module-head collapsible">
+        <h3><span class="code">SH-QC</span> Quality Control</h3>
+       <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">QC menjalankan pemeriksaan sampling pada tiga titik utama, yaitu material yang diterima, produk ruah, dan produk jadi.</p>
+       
+      <ul class="submodule-list">
+        <li><strong>Master Data QC</strong> Pengelolaan standar pengujian oleh QC.</li>
+        <li><strong>Incoming Material Sampling</strong> QC sampling atas barang yang diterima dari proses gudang/logistik.</li>
+        <li><strong>Incoming Material QC Result</strong> Pencatatan hasil QC material, termasuk pass, fail, atau perlu tindakan lanjutan.</li>
+        <li><strong>Bulk Product Sampling</strong> QC sampling untuk produk ruah setelah proses produksi awal.</li>
+        <li><strong>Finished Goods Sampling</strong> QC sampling untuk produk jadi sebelum masuk ke proses karantina dan QA.</li>
+        <li><strong>QC Result and History</strong> Penyimpanan hasil pemeriksaan, status, catatan, dan histori QC.</li>
+        <li><strong>QC Approval Interface</strong> Informasi status QC yang menjadi dasar PPIC, Produksi, Gudang, dan QA untuk melanjutkan proses.</li>
+        <li><strong>Retain Sample</strong> Mengelola arsip sampel setiap batch.</li>
+        <li><strong>Non Conformance</strong> Mengelola pencatatan data ketidaksesuaian, penyimpangan proses, CAPA.</li>
+        <li><strong>Aset Management</strong> Mengelola aset departemen QC.</li>
+      </ul>
+      <h3><span class="code2">User : Produksi, RnD, QC, QA</span></h3>
+    </div></div>
+
+<div class="module-head collapsible">
+        <h3><span class="code">SH-QA</span> Quality Assurance</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">QA melakukan pengecekan akhir terhadap produk jadi yang berada dalam status karantina/hold, lalu memberikan approval release.</p>
+      <ul class="submodule-list">
+        <li><strong>Finished Goods Review</strong> Review data produk jadi, hasil QC, dokumen produksi, dan kelengkapan release.</li>
+        <li><strong>Quarantine Hold Review</strong> Pemeriksaan produk jadi yang berada dalam status hold/karantina.</li>
+        <li><strong>QA Approval and Release</strong> Approval QA untuk mengubah status produk jadi dari hold menjadi released.</li>
+        <li><strong>Release Certificate and Record</strong> Pencatatan hasil release, tanggal release, user approval, dan dokumen pendukung.</li>
+        <li  ><strong>CAPA</strong> untuk menangani tindakan perbaikan dan pencegahan terhadap masalah yang ditemukan. CAPA Request, Investigasi, Root cause, Action Plan, Effectiveness Check, Closure.</li>
+        <li  ><strong>Document Control</strong> mengelola seluruh dokumen mutu perusahaan, mulai dari pembuatan, review, approval, distribusi, revisi, hingga pengarsipan dokumen yang sudah tidak berlaku.</li>
+        <li  ><strong>Complaint Management</strong> mengelola dan penanganan keluhan pelanggan terkait produk, Complain request, investigasi, Respon, Closure.</li>
+        <li  ><strong>Training Management</strong> Mengelola pelatihan kompetensi karyawan berkaitan dengan sistem mutu, Metrik pelatihan, Jadwal pelatihan, Kehadiran, Riwayat Pelatihan.</li>
+      </ul>
+      <h3><span class="code2">User : Produksi, RnD, QC, QA</span></h3>
+    </div></div>
+
+<div class="module-head collapsible">
+        <h3><span class="code">LKPI-WH</span> Warehousing and Logistics</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Gudang PJ dan logistik mengelola penerimaan barang, penyimpanan, karantina produk jadi, serta penyimpanan finished goods setelah release.</p>
+      <ul class="submodule-list">
+<li><strong>Incoming Goods Receipt</strong> Penerimaan bahan baku dan bahan kemas dari supplier atau proses pengadaan.</li>
+        <li><strong>Goods Receipt Inspection Flow</strong> Alur penerimaan barang sebelum QC sampling dilakukan.</li>
+        <li><strong>Warehouse Putaway</strong> Penempatan barang ke lokasi gudang setelah status barang memenuhi ketentuan.</li>
+        <li><strong>Released Finished Goods Storage</strong> Penyimpanan produk jadi setelah disetujui dan di-release oleh QA.</li>
+        <li><strong>Inventory Movement</strong> Mutasi stok antar lokasi, status, dan departemen.</li>
+        <li><strong>Cyclecount</strong> Alur pengecekan stok gudang suesuai penjadwalan.</li>
+        <li><strong>Sweeping</strong> Pengelolaan temuan yang ada di gudang.</li>
+        <li><strong>Branch Warehouse Stock</strong> Pengelolaan stok per cabang atau lokasi gudang.</li>
+        <li><strong>Picking and Dispatch</strong> Pengambilan dan pengeluaran barang untuk dikirim ke customer/retail.</li>
+        <li><strong>Stock Transfer</strong> Mutasi stok antar cabang atau antar gudang bila diperlukan.</li>
+      </ul>
+      <h3><span class="code2">User : Logistik, PPIC</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible">
+        <h3><span class="code">LKPI-OM</span> Order Management</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Order Management di Head Office mendukung kebutuhan supply ke distributor, order dari cabang/distributor, dan koordinasi fulfillment dari stok produk jadi.</p>
+      <ul class="submodule-list">
+        <li><strong>Distributor Order Intake</strong> Penerimaan order dari distributor atau cabang distribusi.</li>
+        <li><strong>Stock Availability Check</strong> Pengecekan ketersediaan finished goods yang sudah released.</li>
+        <li><strong>Order Fulfillment</strong> Proses pemenuhan order berdasarkan stok, prioritas, dan jadwal pengiriman.</li>
+        <li><strong>Delivery Coordination</strong> Koordinasi dengan logistik untuk pengiriman ke distributor atau cabang.</li>
+        <li  ><strong>Purchase Return</strong> Mengelola retur pembelian, retur secara administrasi, tukar barang, pengembalian barang.</li>
+      </ul>
+      <h3><span class="code2">User : logistik, marketing</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible">
+        <h3><span class="code">LKPI-FA</span> Finance & Accounting</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      <p class="module-desc">Modul pengelolaan Finance</p>
+      <ul class="submodule-list">
+        <li><strong>Dashboard</strong>Mengelola aktivitas jadwal kunjungan penjualan dan aktivitas kunjungan penjualan.</li>
+        <li><strong>Cash Management</strong>Pengelolaan Cash Account, Bank Account, Fund Transfer.</li>
+        <li><strong>Account Receivable (Piutang)</strong>Tagihan customer, penerimaan pembayaran dan Umur Piutang.</li>
+        <li><strong>Account Payable (Hutang)</strong>Tagihan supplier, Pembayaran, Umur Hutang.</li>
+        <li><strong>Budget Management</strong>Pengelolaan budget pencairan, Budget Monitoring.</li>
+        <li><strong>Cash Flow</strong>Uang masuk dan keluar, Laporan.</li>
+      </ul>
+      <hr/>
+      <p class="module-desc">Modul pengelolaan Accounting</p>
+      <ul class="submodule-list">
+        <li><strong>Chart of Accounts (COA)n</strong>Pengelolaan daftar akun perusahaan seperti Aset, Liability, Equity, Revenue, Exspense</li>
+        <li><strong>Journal Entry</strong>Pengelolaan jurnal manual.</li>
+        <li><strong>General Ledger</strong>Pengelolaan pusat biaya.</li>
+        <li><strong>Fixed Aset</strong>Pengelolaan aset dan penyusutan.</li>
+        <li><strong>Inventory Valuation</strong>Nilai persediaan.</li>
+        <li><strong>Tax Management</strong>Pengelolaan pajak.</li>
+        <li><strong>Period Closing</strong>Pengelolaan tutup buku.</li>
+        <li><strong>Financial Report</strong>Neraca saldo, Laba Rugi, Neraca, Arus Kas, Buku Besar.</li>
+      </ul>
+      <h3><span class="code2">User : Finance & Accounting</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible">
+        <h3><span class="code">LKPI-HR</span> Human Resources</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      
+      <p class="module-desc">Modul HR automisasi dan pengelolaan seluruh siklus hidup karyawan.</p>
+     <ul class="submodule-list">
+        <li><strong>Dashboard</strong>Mengelola aktivitas jadwal kunjungan penjualan dan aktivitas kunjungan penjualan.</li>
+        <li><strong>Master Data Karyawan</strong>Employee, Department, Designation, Branch, Employment type, Shift Type, </li>
+        <li><strong>Payroll</strong>Komponen gaji, struktur gaji, generate gaji, Slip gaji, Jurnal gaji</li>
+        <li><strong>Attendance</strong>Mengelola absensi karyawan.</li>
+        <li><strong>Leave Management</strong>Alokasi cuti, Aturan cuti, pengajuan cuti, approval cuti, Pengelolaan izin, cuti dst</li>
+        <li><strong>Overtime</strong>Pengajuan lembur, persetujuan lembur, perhitungan lembur.</li>
+        <li><strong>Employee Loan & Advance</strong>Pengelolaan kasbon, pinjaman, potongan cicilan.</li>
+        <li><strong>Training Management</strong>Pengelolaan program pelatihan, program pelatihan, jadwal pelatihan, kalender pelatihan, daftar hadir, evaluasi training, riwayat pelatihan.</li>
+      <li><strong>Asset Management</strong>Peminjaman aset, pengembalian aset.</li>
+      <li><strong>Employee Lifecycle</strong>Mutasi karyawan, promosi, perubahan status, Resign & PHK, Perhitungan hak resign.</li>
+    </ul>
+      <h3><span class="code2">User : HR</span></h3>
+    </div></div>
+
+    <h3 class="section-title">4.3 PT Trisa Likuid Farma / Distributor</h3>
+ <div class="module-head collapsible2">
+        <h3><span class="code">TRI-OM</span> Distributor Order Management</h3>
+        <span class="badge config">Shared with Distributor Workflow</span>
+      </div>
+      
+
+
+<div class="content">
+    <div class="module-card">
+      
+      <p class="module-desc">Submodul ini diturunkan dari alur sales/distribution yang diceritakan customer, mulai dari surat pesanan customer, pemilihan distributor, cek stok cabang, sampai order ke HO bila stok belum tersedia.</p>
+     <ul class="submodule-list">
+        <li><strong>Customer Purchase Order</strong> Pencatatan surat pesanan atau order dari customer/retail.</li>
+        <li><strong>Distributor Selection</strong> Penentuan distributor atau cabang yang akan melayani order.</li>
+        <li><strong>Branch Stock Check</strong> Pengecekan stok cabang untuk menentukan apakah order bisa dipenuhi langsung.</li>
+        <li><strong>Order to Head Office</strong> Pembuatan order ke HO bila stok cabang tidak tersedia atau tidak mencukupi.</li>
+        <li><strong>Order Fulfillment Status</strong> Monitoring status order, mulai dari diterima, diproses, menunggu stok, dikirim, sampai selesai.</li>
+        <li><strong>Invoice Input</strong> Input faktur setelah proses distribusi dan pengiriman dilakukan.</li>
+      </ul>
+      <h3><span class="code2">User : Admin Order, Admin SO</span></h3>
+    </div></div>
+<div class="module-head collapsible">
+        <h3><span class="code">TRI-IV</span> Distributor Inventory Management</h3>
+        <span class="badge config">Shared with Distributor Workflow</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Modul inventory distributor Trisa.</p>
+       <ul class="submodule-list">
+        <li><strong>Master Data</strong> Item Master, Item Group, Gudang, UOM.</li>
+        <li><strong>Quality Control</strong> Quality Control Request, Quality Control Report.</li>
+        <li><strong>Production Coordination</strong> Monitoring kesiapan material, jadwal produksi, dan status proses antar departemen.</li>
+        <li  ><strong>Material Planning</strong> Purchase Request, Purchase Order, Purchase Receipt, Purchase Return, Purchase Monitoring</li>
+        <li  ><strong>Inventory Control (Raw)</strong> Penerimaan barang jadi, Stock Overview, Expiry Monitoring, Inventory Report, Kartu Stock, Picking, Incoming Material, Putaway, Master Gudang</li>
+        <li  ><strong>Report</strong>Production Report, Purchase Report, Inventory Report</li>
+        
+      </ul>
+      <h3><span class="code2">User : Logistik</span></h3>
+    </div></div>
+<div class="module-head collapsible2">
+        <h3><span class="code">TRI-WH</span> Distributor Warehousing</h3>
+        <span class="badge config">Shared with Distributor Workflow</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      
+      <p class="module-desc">Mengelola penerimaan barang dari HO, penyimpanan di gudang/cabang, dan pengeluaran barang untuk memenuhi order customer.</p>
+     <ul class="submodule-list">
+      <li><strong>Incoming Goods Receipt</strong> Penerimaan bahan baku dan bahan kemas dari supplier atau proses pengadaan.</li>
+        
+        <li><strong>Incoming Goods Receipt</strong> Penerimaan bahan baku dan bahan kemas dari supplier atau proses pengadaan.</li>
+        <li><strong>Goods Receipt Inspection Flow</strong> Alur penerimaan barang sebelum QC sampling dilakukan.</li>
+        <li><strong>Warehouse Putaway</strong> Penempatan barang ke lokasi gudang setelah status barang memenuhi ketentuan.</li>
+        <li><strong>Released Finished Goods Storage</strong> Penyimpanan produk jadi setelah disetujui dan di-release oleh QA.</li>
+        <li><strong>Inventory Movement</strong> Mutasi stok antar lokasi, status, dan departemen.</li>
+        <li><strong>Cyclecount</strong> Alur pengecekan stok gudang suesuai penjadwalan.</li>
+        <li><strong>Sweeping</strong> Pengelolaan temuan yang ada di gudang.</li>
+      </ul>
+      <h3><span class="code2">User : Logistik</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible2">
+        <h3><span class="code">TRI-MS</span> Marketing and Sales</h3>
+         <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      
+      <p class="module-desc">Mendukung aktivitas sales distributor, termasuk program penjualan, DPF, cashback, pricing, dan customer channel.</p>
+     <ul class="submodule-list">
+          <li><strong>Dashboard</strong>
+          Sales / Penjualan : Berisi infografis Sales (Target vs Realisasi, Sales Perbulan, Sales Tim (spv, asm, nsm)), data COR vs Penjualan
+               <br/> 
+          Agenda : Absensi hari ini, Kunjungan Hari ini, Agenda & Event, Presensi Bulan ini
+              <br/> 
+          Approval : Menu permintaan approval.
+              </li>
+        
+        <li><strong>Presensi</strong>Menu untuk absensi masuk, keluar, izin, aproval izin lengkap dengan foto & sharelok</li>
+        <li><strong>Visit Plan</strong>Berisi infografis kunjungan yang dilakukan, Penjadwalan kunjungan, Plan Kunjungan Luar Kota, Kunjungan Unplan, Laporan Kunjungan</li>
+        <li><strong>Manajemen Tim</strong>Info Grafis & Laporan penjualan per team. Laporan absensi tim Laporan Kunjungan Tim. Laporan aktivitas event. Alokasi Target Tim.Daftar Anggota Tim.</li>
+        <li><strong>Sales Area</strong>Informasi Target Bulan ini, Target Tahun ini.
+        <br/> Realisasi Penjualan Bulan ini. Realisasi Penjualan Tahun ini
+        <br/> Pengeluaran marketing Support Dana, Expense, Entertain, UC, dst.
+        <br/> List Penjualan per distributor.</li>
+        <li><strong>Sales Order</strong>Form input Sales Order marketing ke distributor trisa & monitoring PO, termasuk batasan diskon dan menu pengajuan jika diskon melebihi maksimal melalui menu DPF, Daftar Stok Produk Trisa & HO, Aging Stok Distributor.</li>
+        <li><strong>Manajemen Pengajuan</strong>Mengelola pengajuan (supprot dana, dpf,uc dst), realisasi dan monitoring status pengajuan.</li>
+        <li><strong>Marketing Support</strong>Mengelola Permintaan Sampel, Gimik, &amp; Support Produk, serta monitoring permintaan</li>
+        <li><strong>Purchase Order</strong>Form input PO ke distributor trisa &amp; monitoring PO.</li>
+        <li><strong>DPF Data</strong> Menu pengajuan diskon baik diskon on faktur maupun cashback, berlaku aproval berjenjang & tracking proses pengajuan.
+        <br/> Menu Monitoring Pengajuan dpf
+        <br/> Menu Laporan Histoy DPF lengkap dengan status</li>
+      
+      <li><strong>Support Produk</strong>Berisi menu input komplain produk dan monitoring komplain.</li>
+    <li><strong>Manajemen Event</strong>Mengelola event yang dinisiasi marketing, mulai dari  perencanaan, jenis event, penunjukan pic, orang yang terlibat, calendar event, monitoring event.</li>
+   <li><strong>Customer</strong>Menu input user dan outlet baru</li>
+   <li><strong>Laporan</strong>Menampilkan laporan penjualan, laporan aktivitas, laporan pengajuan, laporan forecast, dan lain-lain.</li>
+      </ul>
+      <h3><span class="code2">User : Marketing</span></h3>
+    </div></div>
+
+    <div class="module-head collapsible">
+        <h3><span class="code">LKPI-MSU</span> Marketing Support</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+       <p class="module-desc">Modul admin support mengelola aktivitas kunjungan, manajemen support, manajemen produk, manajemen event, manajemen pengajuan dan laporan.</p>
+      <ul class="submodule-list">
+        <li><strong>Dashboard</strong>Infografis terkait support marketing berdasarkan jobdesk.</li>
+        <li><strong>Presensi</strong>Mengelola data presensi marketing, terkain absensi dan kunjungan.</li>
+        <li><strong>Akomodasi</strong>Mengelola permintaan terkait akomodasi, mulai dari approval, pemesanan tiket, pembayaran, refund, report</li>
+        <li><strong>Rekap Sales</strong>Mengelola data rekap sales dari distributor rekanan.</li>
+        <li><strong>UP Country</strong>Mengelola data kunjungan luar kota, mulai dari plan kunjungan, pengajuan, realisasi, dan pertambahan biaya</li>
+        <li><strong>Manajemen Pengajuan</strong>Mengelola pengajuan / reimburse mulai dari approval, pencairan, realisasi dan rekap.</li>
+        <li><strong>Aging Stok</strong>Mengelola data produk aging di stok distributor serta pengelolaan relokasi produk.</li>
+        <li><strong>DPF</strong>Mengelola data DPF (Discount Proposal Form) mulai dari approval pengajuan, rekap, pengajuan ke pihak distributor.</li>
+      </ul>
+      <h3><span class="code2">User : Admin Marketing</span></h3>
+    </div></div>
+
+   <div class="module-head collapsible2">
+        <h3><span class="code">TRI-CRM</span> Customer Relationship Management</h3>
+         <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      
+      <p class="module-desc">CRM distributor fokus pada pengelolaan data customer/retail, histori transaksi, kategori customer, dan follow-up sales.</p>
+     <ul class="submodule-list">
+        <li><strong>Customer Master</strong> Data customer distributor, retail, outlet, atau channel penjualan.</li>
+        <li><strong>Customer Category</strong> Pengelompokan customer berdasarkan tipe, area, channel, atau potensi penjualan.</li>
+        <li><strong>Customer Transaction History</strong> Histori pembelian, order, pembayaran, dan komunikasi customer.</li>
+        <li><strong>Sales Follow-up</strong> Pencatatan follow-up, aktivitas sales, dan rencana kunjungan.</li>
+      </ul>
+      <h3><span class="code2">User : Admin</span></h3>
+    </div></div>
+   
+    <div class="module-head collapsible2">
+        <h3><span class="code">TRI-HR</span> Human Resources</h3>
+         <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      
+      <p class="module-desc">HR PT. Trisa > Sumber data Absensi : manual Fingerprint, Aplikasi marketing (existing)
+Tingkatan marketing : HRD</p>
+     <ul class="submodule-list">
+        <li><strong>Dashboard</strong>Mengelola aktivitas jadwal kunjungan penjualan dan aktivitas kunjungan penjualan.</li>
+        <li><strong>Master Data Karyawan</strong>Employee, Department, Designation, Branch, Employment type, Shift Type, </li>
+        <li><strong>Payroll</strong>Komponen gaji, struktur gaji, generate gaji, Slip gaji, Jurnal gaji</li>
+        <li><strong>Attendance</strong>Mengelola absensi karyawan.</li>
+        <li><strong>Leave Management</strong>Alokasi cuti, Aturan cuti, pengajuan cuti, approval cuti, Pengelolaan izin, cuti dst</li>
+        <li><strong>Overtime</strong>Pengajuan lembur, persetujuan lembur, perhitungan lembur.</li>
+        <li><strong>Employee Loan & Advance</strong>Pengelolaan kasbon, pinjaman, potongan cicilan.</li>
+        <li><strong>Training Management</strong>Pengelolaan program pelatihan, program pelatihan, jadwal pelatihan, kalender pelatihan, daftar hadir, evaluasi training, riwayat pelatihan.</li>
+      <li><strong>Asset Management</strong>Peminjaman aset, pengembalian aset.</li>
+      <li><strong>Employee Lifecycle</strong>Mutasi karyawan, promosi, perubahan status, Resign & PHK, Perhitungan hak resign.</li>
+    </ul>
+      <h3><span class="code2">User : HR</span></h3>
+    </div></div>
+
+    <h3 class="section-title">4.4 Apotek / Retail</h3>
+ <div class="module-head collapsible2">
+        <h3><span class="code">APT-POS</span> POS System</h3>
+        <span class="badge specific">Apotek Specific</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+
+      <p class="module-desc">POS System menjadi modul utama untuk transaksi penjualan retail di outlet apotek, termasuk kasir, pembayaran, retur, dan laporan transaksi harian.</p>
+      <ul class="submodule-list">
+        <li><strong>Dashboard</strong> Penjualan hari ini, Omset, Jumlah Transaksi, Kas masuk & Keluar, Grafik Penjualan, Stok Limit & Notifikasi.</li>
+        
+        <li><strong>POS</strong> Scan Barcode, Cari produk, input quantity, Diskon item, Diskon transaksi, Voucher, Promo, Member, Split payment, hold bill, recall bill, refund, return, cetak struk.</li>
+        <li><strong>Cashier Transaction</strong> Proses transaksi kasir untuk penjualan langsung ke end customer.</li>
+        <li><strong>Payment Handling</strong> Pencatatan pembayaran tunai, transfer, kartu, QRIS, atau metode pembayaran lain.</li>
+        <li><strong>Receipt Printing</strong> Pembuatan dan pencetakan struk transaksi.</li>
+        <li><strong>Retail Return</strong> Proses retur penjualan retail sesuai aturan outlet.</li>
+        <li><strong>Daily Closing</strong> Tutup kasir harian, summary transaksi, dan rekonsiliasi kas.</li>
+      </ul>
+    </div></div>
+<div class="module-head collapsible2">
+        <h3><span class="code">APT-MO</span> Multi Outlet</h3>
+        <span class="badge specific">Apotek Specific</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+
+      <p class="module-desc">Multi Outlet mengelola operasional beberapa outlet apotek, termasuk stok per outlet, transfer barang, dan laporan per lokasi.</p>
+      <ul class="submodule-list">
+        <li><strong>Outlet Master</strong> Data outlet, lokasi, status aktif, dan penanggung jawab outlet.</li>
+        <li><strong>Outlet Stock</strong> Monitoring stok per outlet secara terpisah.</li>
+        <li><strong>Inter Outlet Transfer</strong> Transfer barang antar outlet untuk memenuhi kebutuhan stok.</li>
+        <li><strong>Outlet Performance</strong> Laporan penjualan, margin, stok, dan transaksi per outlet.</li>
+      </ul>
+    </div></div>
+<div class="module-head collapsible2">
+        <h3><span class="code">APT-INV</span> Retail Inventory</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      <p class="module-desc">Inventory apotek fokus pada ketersediaan produk di outlet, minimum stock, stock opname, dan barang yang akan dijual melalui POS.</p>
+      <ul class="submodule-list">
+        <li><strong>Master Data</strong> Master data produk: Nama, merk, satuan, barcode, hargajual, harga beli. Variasi Produk : Warna, Ukuran, Rasa & Tipe.
+        Supplier : Data supplier, kontak alamat. Customer : Data customer, member, poin, level member. Karyawan : Data Karyawan, level.</li>
+        <li><strong>Item Stock by Outlet</strong> Stok produk per outlet dan lokasi penyimpanan.</li>
+        <li><strong>Minimum Stock Alert</strong> Peringatan jika stok berada di bawah minimum.</li>
+        <li><strong>Stock Opname</strong> Proses pemeriksaan fisik stok dan penyesuaian stok.</li>
+        <li><strong>Expiry and Batch Tracking</strong> Pengelolaan batch dan expired date jika produk membutuhkan kontrol tersebut.</li>
+      </ul>
+    </div></div>
+<div class="module-head collapsible2">
+         <h3><span class="code">APT-FR</span> Financial Report</h3>
+        <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      <p class="module-desc">Financial Report di apotek berfokus pada laporan transaksi outlet, laporan kas, summary penjualan, dan kebutuhan reporting retail.</p>
+      <ul class="submodule-list">
+        <li><strong>Daily Sales Report</strong> Laporan penjualan harian per outlet dan per kasir.</li>
+        <li><strong>Cash and Payment Report</strong> Laporan penerimaan kas, non-cash, dan rekonsiliasi pembayaran.</li>
+        <li><strong>Margin Report</strong> Laporan margin penjualan berdasarkan item, kategori, atau outlet.</li>
+        <li><strong>Outlet Financial Summary</strong> Ringkasan performa keuangan tiap outlet.</li>
+      </ul>
+    </div></div>
+    
+<div class="module-head collapsible2">
+        <h3><span class="code">APT-CRM</span> Customer Relationship Management</h3>
+         <span class="badge shared">Shared Base</span>
+      </div>
+<div class="content">
+    <div class="module-card">
+      
+      <p class="module-desc">CRM distributor fokus pada pengelolaan data customer/retail, histori transaksi, kategori customer, dan follow-up sales.</p>
+     <ul class="submodule-list">
+        <li><strong>Customer Master</strong> Data customer distributor, retail, outlet, atau channel penjualan.</li>
+        <li><strong>Customer Category</strong> Pengelompokan customer berdasarkan tipe, area, channel, atau potensi penjualan.</li>
+        <li><strong>Customer Transaction History</strong> Histori pembelian, order, pembayaran, dan komunikasi customer.</li>
+        <li><strong>Sales Follow-up</strong> Pencatatan follow-up, aktivitas sales, dan rencana kunjungan.</li>
+      </ul>
+      <h3><span class="code2">User : Admin</span></h3>
+    </div></div>
+    <h2>5. Gambaran Umum Proses Bisnis</h2>
+<div class="module-head collapsible2">
+        <h3>Gambaran Umum Penjualan</h3>
+        
+      </div>
+<div class="content">
+    <div class="module-card">
+        <div class="note">Berikut gambaran umum proses bisnis penjualan produk di LKPI.</div>
+  <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot;&gt;&lt;diagram name=\&quot;Page-1\&quot; id=\&quot;dKquSQfXMDHGowOu8Asg\&quot;&gt;&lt;mxGraphModel grid=\&quot;1\&quot; page=\&quot;1\&quot; gridSize=\&quot;10\&quot; guides=\&quot;1\&quot; tooltips=\&quot;1\&quot; connect=\&quot;1\&quot; arrows=\&quot;0\&quot; fold=\&quot;1\&quot; pageScale=\&quot;1\&quot; pageWidth=\&quot;850\&quot; pageHeight=\&quot;1100\&quot; math=\&quot;0\&quot; shadow=\&quot;0\&quot;&gt;&lt;root&gt;&lt;mxCell id=\&quot;0\&quot;/&gt;&lt;mxCell id=\&quot;1\&quot; parent=\&quot;0\&quot;/&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-10\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-2\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.343;exitY=0.018;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-3\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;Array as=\&quot;points\&quot;&gt;&lt;mxPoint x=\&quot;303.04\&quot; y=\&quot;231.43\&quot;/&gt;&lt;mxPoint x=\&quot;303.04\&quot; y=\&quot;160.04\&quot;/&gt;&lt;/Array&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-11\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-10\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;\&quot; value=\&quot;Pembelian\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;0.2976\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-15\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-2\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-4\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;Array as=\&quot;points\&quot;&gt;&lt;mxPoint x=\&quot;507.57\&quot; y=\&quot;270.04\&quot;/&gt;&lt;/Array&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-16\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-15\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;\&quot; value=\&quot;Penjualan\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;0.4651\&quot; y=\&quot;2\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint x=\&quot;-60\&quot; y=\&quot;-12\&quot; as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-27\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-2\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-25\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-30\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-27\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];\&quot; value=\&quot;Penjualan\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;-0.1446\&quot; y=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-2\&quot; parent=\&quot;1\&quot; style=\&quot;ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;rounded=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;\&quot; value=\&quot;&amp;lt;b&amp;gt;PT. LIKUID PHARMALAB INDONESIA&amp;lt;/b&amp;gt;&amp;lt;div&amp;gt;&amp;lt;b&amp;gt;(Produksi)&amp;lt;/b&amp;gt;&amp;lt;/div&amp;gt;\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;80\&quot; width=\&quot;120\&quot; x=\&quot;263\&quot; y=\&quot;230\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-12\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-3\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-2\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;Array as=\&quot;points\&quot;&gt;&lt;mxPoint x=\&quot;110.04\&quot; y=\&quot;240\&quot;/&gt;&lt;/Array&gt;&lt;mxPoint x=\&quot;263\&quot; y=\&quot;241.72\&quot; as=\&quot;targetPoint\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-13\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-12\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;\&quot; value=\&quot;Penjualan\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;-0.0676\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint x=\&quot;18\&quot; as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-3\&quot; parent=\&quot;1\&quot; style=\&quot;ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;rounded=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;\&quot; value=\&quot;&amp;lt;b&amp;gt;CV TIGA LIKUID PLASTINDO&amp;lt;/b&amp;gt;&amp;lt;div&amp;gt;&amp;lt;b&amp;gt;(Produksi)&amp;lt;/b&amp;gt;&amp;lt;/div&amp;gt;\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;80\&quot; width=\&quot;120\&quot; x=\&quot;55\&quot; y=\&quot;120\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-8\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-4\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-2\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;Array as=\&quot;points\&quot;&gt;&lt;mxPoint x=\&quot;550\&quot; y=\&quot;241.7\&quot;/&gt;&lt;/Array&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-9\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-8\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;\&quot; value=\&quot;Pembelian\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;-0.522\&quot; y=\&quot;-4\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint x=\&quot;-104\&quot; y=\&quot;-17\&quot; as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-14\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-4\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-6\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-17\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-14\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;\&quot; value=\&quot;Penjualan\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;-0.2444\&quot; y=\&quot;2\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-18\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-4\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-5\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-19\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-18\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;\&quot; value=\&quot;Penjualan\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;-0.4721\&quot; y=\&quot;-3\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint x=\&quot;14\&quot; y=\&quot;-5\&quot; as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-4\&quot; parent=\&quot;1\&quot; style=\&quot;ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;rounded=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;\&quot; value=\&quot;&amp;lt;b&amp;gt;PT. TRISA LIKUID FARMA&amp;lt;/b&amp;gt;\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;80\&quot; width=\&quot;120\&quot; x=\&quot;490\&quot; y=\&quot;320\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-23\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-5\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.737;entryY=0.064;entryDx=0;entryDy=0;entryPerimeter=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-4\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;Array as=\&quot;points\&quot;&gt;&lt;mxPoint x=\&quot;578.44\&quot; y=\&quot;260\&quot;/&gt;&lt;/Array&gt;&lt;mxPoint x=\&quot;620\&quot; y=\&quot;285.1\&quot; as=\&quot;sourcePoint\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-24\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-23\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;\&quot; value=\&quot;Pembelian\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;0.3223\&quot; y=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint x=\&quot;39\&quot; y=\&quot;-14\&quot; as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-35\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-5\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-34\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-36\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-35\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];\&quot; value=\&quot;Penjualan\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;-0.0125\&quot; y=\&quot;-1\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-5\&quot; parent=\&quot;1\&quot; style=\&quot;ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;rounded=1;fillColor=#d80073;fontColor=#ffffff;strokeColor=#A50040;\&quot; value=\&quot;&amp;lt;b&amp;gt;Apotek Likuid Farma&amp;lt;/b&amp;gt;\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;80\&quot; width=\&quot;120\&quot; x=\&quot;665\&quot; y=\&quot;220\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-39\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-6\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-38\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-47\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-39\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];\&quot; value=\&quot;Purchase Order\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;0.3739\&quot; y=\&quot;-2\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint x=\&quot;26\&quot; y=\&quot;-18\&quot; as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-43\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-6\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-42\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-46\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-43\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];\&quot; value=\&quot;Purchase Order\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;-0.3599\&quot; y=\&quot;-1\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-6\&quot; parent=\&quot;1\&quot; style=\&quot;rounded=1;whiteSpace=wrap;html=1;\&quot; value=\&quot;Outlet, RS, Apotek PBAK\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;40\&quot; width=\&quot;90\&quot; x=\&quot;505\&quot; y=\&quot;460\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-20\&quot; parent=\&quot;1\&quot; style=\&quot;ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;rounded=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;\&quot; value=\&quot;&amp;lt;b&amp;gt;&amp;lt;font&amp;gt;PT. LIKUID PHARMALAB INDONESIA&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;div&amp;gt;&amp;lt;b&amp;gt;&amp;lt;font&amp;gt;(Plant)&amp;lt;/font&amp;gt;&amp;lt;/b&amp;gt;&amp;lt;/div&amp;gt;\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;70\&quot; width=\&quot;110\&quot; x=\&quot;55\&quot; y=\&quot;310\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-21\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-20\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;Array as=\&quot;points\&quot;&gt;&lt;mxPoint x=\&quot;110.01\&quot; y=\&quot;270.01\&quot;/&gt;&lt;/Array&gt;&lt;mxPoint x=\&quot;260\&quot; y=\&quot;270\&quot; as=\&quot;targetPoint\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-22\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-21\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;\&quot; value=\&quot;Produksi\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;0.3498\&quot; y=\&quot;-6\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint x=\&quot;-1\&quot; y=\&quot;-7\&quot; as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-29\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-25\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-2\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-31\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-29\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];\&quot; value=\&quot;Pembelian\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;0.1483\&quot; y=\&quot;2\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-32\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-25\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-6\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-33\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-32\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];\&quot; value=\&quot;Penjualan\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;0.4341\&quot; y=\&quot;2\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-25\&quot; parent=\&quot;1\&quot; style=\&quot;ellipse;whiteSpace=wrap;html=1;fillColor=#fa6800;strokeColor=#C73500;rounded=1;fontColor=#000000;\&quot; value=\&quot;&amp;lt;b style=&amp;quot;color: rgb(255, 255, 255);&amp;quot;&amp;gt;Distributor&amp;lt;/b&amp;gt;&amp;lt;div&amp;gt;&amp;lt;b style=&amp;quot;color: rgb(255, 255, 255);&amp;quot;&amp;gt;Rekanan&amp;lt;/b&amp;gt;&amp;lt;/div&amp;gt;\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;60\&quot; width=\&quot;120\&quot; x=\&quot;263\&quot; y=\&quot;380\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-34\&quot; parent=\&quot;1\&quot; style=\&quot;rounded=1;whiteSpace=wrap;html=1;\&quot; value=\&quot;End User\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;40\&quot; width=\&quot;90\&quot; x=\&quot;680\&quot; y=\&quot;140\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-38\&quot; parent=\&quot;1\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;\&quot; value=\&quot;Marketing\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;30\&quot; width=\&quot;120\&quot; x=\&quot;370\&quot; y=\&quot;535\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-40\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-38\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.271;entryY=1.02;entryDx=0;entryDy=0;entryPerimeter=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-25\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-41\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-40\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];\&quot; value=\&quot;Pembelian\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;-0.7562\&quot; y=\&quot;3\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint x=\&quot;-47\&quot; y=\&quot;-43\&quot; as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-44\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-42\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-4\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;&gt;&lt;Array as=\&quot;points\&quot;&gt;&lt;mxPoint x=\&quot;710\&quot; y=\&quot;388.3\&quot;/&gt;&lt;/Array&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-45\&quot; connectable=\&quot;0\&quot; parent=\&quot;UIHXNSCFQ5Djh1OcP01q-44\&quot; style=\&quot;edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];\&quot; value=\&quot;Pembelian\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; x=\&quot;0.2545\&quot; y=\&quot;-1\&quot; as=\&quot;geometry\&quot;&gt;&lt;mxPoint as=\&quot;offset\&quot;/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-42\&quot; parent=\&quot;1\&quot; style=\&quot;rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;\&quot; value=\&quot;Marketing\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;30\&quot; width=\&quot;120\&quot; x=\&quot;650\&quot; y=\&quot;420\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-48\&quot; parent=\&quot;1\&quot; style=\&quot;strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;rounded=1;fillColor=#fa6800;fontColor=#000000;strokeColor=#C73500;\&quot; value=\&quot;&amp;lt;div&amp;gt;&amp;lt;b style=&amp;quot;color: rgb(255, 255, 255);&amp;quot;&amp;gt;Rekap Sales&amp;lt;/b&amp;gt;&amp;lt;/div&amp;gt;\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;75\&quot; width=\&quot;60\&quot; x=\&quot;130\&quot; y=\&quot;397.5\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-50\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-25\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-48\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-52\&quot; parent=\&quot;1\&quot; style=\&quot;strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;rounded=1;fillColor=#fa6800;fontColor=#000000;strokeColor=#C73500;\&quot; value=\&quot;&amp;lt;div&amp;gt;&amp;lt;b style=&amp;quot;color: rgb(255, 255, 255);&amp;quot;&amp;gt;Rekap Sales&amp;lt;/b&amp;gt;&amp;lt;/div&amp;gt;\&quot; vertex=\&quot;1\&quot;&gt;&lt;mxGeometry height=\&quot;75\&quot; width=\&quot;60\&quot; x=\&quot;750\&quot; y=\&quot;322.5\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;mxCell id=\&quot;UIHXNSCFQ5Djh1OcP01q-53\&quot; edge=\&quot;1\&quot; parent=\&quot;1\&quot; source=\&quot;UIHXNSCFQ5Djh1OcP01q-4\&quot; style=\&quot;edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;\&quot; target=\&quot;UIHXNSCFQ5Djh1OcP01q-52\&quot;&gt;&lt;mxGeometry relative=\&quot;1\&quot; as=\&quot;geometry\&quot;/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;&lt;/diagram&gt;&lt;/mxfile&gt;&quot;,&quot;toolbar&quot;:&quot;pages zoom layers lightbox&quot;,&quot;page&quot;:-1}"></div>
+
+      </div>
+    
+  </main>
+  
+<script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+
+var coll = document.getElementsByClassName("collapsible2");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active2");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>
+</body></html>

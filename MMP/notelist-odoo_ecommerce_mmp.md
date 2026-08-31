@@ -19,7 +19,7 @@ Mengenai Keamanan dan Autentikasi Lanjutan:
 10. Bagaimana mekanisme pembatasan akses (rate limiting dan IP whitelisting) pada custom API yang dibangun oleh MMP guna mencegah potensi serangan siber atau DDoS dari luar?
 
 Mengenai Integrasi E-Commerce dengan Multi-Entitas dan Ritel (Apotek & Distributor):
-1.Bagaimana e-commerce Odoo menangani pemisahan inventory secara real-time untuk grup perusahaan yang kompleks (seperti PT LKPI, CV Tiga Likuid Plastindo, PT Trisa Likuid Farma, dan Apotek Likuid Farma)? 
+1. Bagaimana e-commerce Odoo menangani pemisahan inventory secara real-time untuk grup perusahaan yang kompleks (seperti PT LKPI, CV Tiga Likuid Plastindo, PT Trisa Likuid Farma, dan Apotek Likuid Farma)? 
 2. Apakah satu keranjang belanja (cart) atau satu checkout dapat memetakan barang langsung dari gudang atau entitas yang berbeda secara otomatis?  Apakah e-commerce Odoo yang didemokan mendukung pengelolaan Multi-Price / Multi-Level Pricing (misalnya harga beda antara pembelian grosir untuk distributor PT Trisa, harga institusi rumah sakit, dan harga ritel untuk end-customer di Apotek)?  
 3. Bagaimana modul e-commerce Odoo mengakomodasi alur diskon khusus yang kompleks seperti Discount Proposal Form (DPF) atau persetujuan berjenjang (approval workflow) diskon yang biasa digunakan oleh tim marketing PT LKPI? 
 

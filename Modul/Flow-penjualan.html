@@ -1,0 +1,1594 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flowchart SAP ERP - Sales to Payment (Order to Cash)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.css');
+  @import url('https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.css');
+  @import url('https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.css');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f4f8;
+    color: #1a2332;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #0070F2 0%, #003DA5 100%);
+    color: white;
+    padding: 28px 40px;
+    box-shadow: 0 4px 20px rgba(0,61,165,0.3);
+    position: relative;
+    z-index: 10;
+  }
+
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+
+  .header p {
+    font-size: 14px;
+    opacity: 0.85;
+    font-weight: 400;
+  }
+
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    margin-top: 10px;
+    backdrop-filter: blur(10px);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px 40px;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    align-items: center;
+  }
+
+  .legend-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #475569;
+  }
+
+  .legend-shape {
+    width: 28px;
+    height: 18px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .shape-process { background: #0070F2; }
+  .shape-document { background: #10B981; }
+  .shape-decision { background: #F59E0B; transform: rotate(0deg); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); width: 22px; height: 22px; }
+  .shape-start { background: #6366F1; border-radius: 12px; }
+  .shape-end { background: #EF4444; border-radius: 12px; }
+  .shape-module { background: #8B5CF6; }
+
+  .flowchart-container {
+    padding: 40px;
+    position: relative;
+    min-height: 1200px;
+  }
+
+  .phase-label {
+    position: absolute;
+    left: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .flow-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .flow-node {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+  }
+
+  .flow-node:hover {
+    transform: translateY(-4px);
+  }
+
+  .flow-node:hover .node-card {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  }
+
+  .node-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    min-width: 170px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .flow-node.active .node-card {
+    border-color: #0070F2;
+    box-shadow: 0 8px 30px rgba(0,112,242,0.2);
+  }
+
+  .node-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 20px;
+  }
+
+  .node-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a2332;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .node-tcode {
+    font-size: 11px;
+    font-weight: 600;
+    color: #0070F2;
+    background: #EBF3FF;
+    padding: 2px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 6px;
+  }
+
+  .node-module {
+    font-size: 10px;
+    color: #8B5CF6;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .node-step {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0070F2;
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,112,242,0.3);
+  }
+
+  .arrow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    flex-shrink: 0;
+  }
+
+  .arrow-right {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #0070F2, #60A5FA);
+    position: relative;
+    border-radius: 2px;
+  }
+
+  .arrow-right::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 7px solid transparent;
+    border-left: 10px solid #60A5FA;
+  }
+
+  .arrow-down {
+    width: 3px;
+    height: 50px;
+    background: linear-gradient(180deg, #0070F2, #60A5FA);
+    position: relative;
+    border-radius: 2px;
+    margin: 0 auto;
+  }
+
+  .arrow-down::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top: 10px solid #60A5FA;
+  }
+
+  .arrow-down-long {
+    width: 3px;
+    height: 70px;
+    background: linear-gradient(180deg, #0070F2, #60A5FA);
+    position: relative;
+    border-radius: 2px;
+    margin: 0 auto;
+  }
+
+  .arrow-down-long::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top: 10px solid #60A5FA;
+  }
+
+  .decision-diamond {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #F59E0B, #D97706);
+    transform: rotate(45deg);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+    margin: 20px auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .decision-diamond:hover {
+    transform: rotate(45deg) scale(1.08);
+    box-shadow: 0 8px 25px rgba(245,158,11,0.4);
+  }
+
+  .decision-text {
+    transform: rotate(-45deg);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+    padding: 10px;
+  }
+
+  .sub-process-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin: 10px 0;
+  }
+
+  .sub-node {
+    background: white;
+    border-radius: 8px;
+    padding: 10px 16px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-left: 4px solid #10B981;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .sub-node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+
+  .sub-node .sub-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a2332;
+  }
+
+  .sub-node .sub-tcode {
+    font-size: 10px;
+    color: #10B981;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .detail-panel {
+    position: fixed;
+    right: -420px;
+    top: 0;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -8px 0 30px rgba(0,0,0,0.15);
+    z-index: 1000;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    padding: 0;
+  }
+
+  .detail-panel.open {
+    right: 0;
+  }
+
+  .detail-header {
+    background: linear-gradient(135deg, #0070F2, #003DA5);
+    color: white;
+    padding: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .detail-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+
+  .detail-close:hover {
+    background: rgba(255,255,255,0.3);
+  }
+
+  .detail-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .detail-header .detail-tcode {
+    font-size: 13px;
+    opacity: 0.85;
+    background: rgba(255,255,255,0.2);
+    padding: 3px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+  .detail-body {
+    padding: 24px;
+  }
+
+  .detail-section {
+    margin-bottom: 20px;
+  }
+
+  .detail-section h4 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #f1f5f9;
+  }
+
+  .detail-section p, .detail-section li {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .detail-section ul {
+    padding-left: 18px;
+  }
+
+  .detail-section li {
+    margin-bottom: 4px;
+  }
+
+  .detail-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px;
+  }
+
+  .tag-sd { background: #DBEAFE; color: #1D4ED8; }
+  .tag-fi { background: #D1FAE5; color: #047857; }
+  .tag-mm { background: #FEF3C7; color: #92400E; }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .phase-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 30px 0 20px;
+    padding: 12px 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .phase-banner .phase-num {
+    width: 32px;
+    height: 32px;
+    background: #0070F2;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .phase-banner .phase-info h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a2332;
+  }
+
+  .phase-banner .phase-info p {
+    font-size: 11px;
+    color: #64748b;
+  }
+
+  .branch-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 40px;
+    margin: 10px 0;
+  }
+
+  .branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .branch-label {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 10px;
+    color: white;
+  }
+
+  .branch-yes { background: #10B981; }
+  .branch-no { background: #EF4444; }
+
+  .connector-h {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 40px;
+  }
+
+  .connector-h::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    right: 25%;
+    height: 3px;
+    background: #0070F2;
+    border-radius: 2px;
+  }
+
+  .start-node {
+    background: linear-gradient(135deg, #6366F1, #4F46E5);
+    color: white;
+    border-radius: 30px;
+    padding: 14px 32px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(99,102,241,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .start-node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(99,102,241,0.4);
+  }
+
+  .end-node {
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    color: white;
+    border-radius: 30px;
+    padding: 14px 32px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(239,68,68,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .end-node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(239,68,68,0.4);
+  }
+
+  .doc-output {
+    background: #F0FDF4;
+    border: 1px dashed #10B981;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 11px;
+    color: #047857;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 6px;
+  }
+
+  .footer {
+    background: #1a2332;
+    color: #94a3b8;
+    padding: 20px 40px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .footer strong {
+    color: white;
+  }
+
+  @media (max-width: 900px) {
+    .flow-row {
+      flex-direction: column;
+      align-items: center;
+    }
+    .arrow-right {
+      width: 3px;
+      height: 40px;
+    }
+    .arrow-right::after {
+      border: 7px solid transparent;
+      border-top: 10px solid #60A5FA;
+      border-left: 7px solid transparent;
+      right: 50%;
+      top: auto;
+      bottom: -2px;
+      transform: translateX(50%);
+    }
+    .branch-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .detail-panel {
+      width: 100%;
+      right: -100%;
+    }
+    .flowchart-container {
+      padding: 20px;
+    }
+  }
+
+  .pulse {
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0,112,242,0.4); }
+    70% { box-shadow: 0 0 0 12px rgba(0,112,242,0); }
+    100% { box-shadow: 0 0 0 0 rgba(0,112,242,0); }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  .flow-node:nth-child(1) { animation-delay: 0.1s; }
+  .flow-node:nth-child(2) { animation-delay: 0.2s; }
+  .flow-node:nth-child(3) { animation-delay: 0.3s; }
+  .flow-node:nth-child(4) { animation-delay: 0.4s; }
+  .flow-node:nth-child(5) { animation-delay: 0.5s; }
+  .flow-node:nth-child(6) { animation-delay: 0.6s; }
+  .flow-node:nth-child(7) { animation-delay: 0.7s; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 Flowchart SAP ERP — Order to Cash (O2C)</h1>
+  <p>Alur Penjualan → Pengiriman → Faktur → Penerimaan Pembayaran</p>
+  <div class="badge">📘 Standar SAP S/4HANA & ECC 6.0 | Modul SD & FI</div>
+</div>
+
+<div class="legend">
+  <span class="legend-title">Legenda:</span>
+  <div class="legend-item"><div class="legend-shape shape-start"></div> Mulai</div>
+  <div class="legend-item"><div class="legend-shape shape-process"></div> Proses Utama</div>
+  <div class="legend-item"><div class="legend-shape shape-document"></div> Dokumen Output</div>
+  <div class="legend-item"><div class="legend-shape shape-decision"></div> Keputusan</div>
+  <div class="legend-item"><div class="legend-shape shape-end"></div> Selesai</div>
+</div>
+
+<div class="flowchart-container">
+
+  <!-- PHASE 1: Pre-Sales -->
+  <div class="phase-banner fade-in">
+    <div class="phase-num">1</div>
+    <div class="phase-info">
+      <h3>Pre-Sales & Order Management</h3>
+      <p>Modul SD — Inquiry, Quotation & Sales Order</p>
+    </div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center; margin-bottom: 10px;">
+    <div class="start-node fade-in" onclick="showDetail('start')">🚀 Mulai Proses Penjualan</div>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin: 10px 0;">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center; flex-wrap: wrap; gap: 0;">
+    <div class="flow-node fade-in" onclick="showDetail('inquiry')">
+      <div class="node-card">
+        <div class="node-step">1</div>
+        <div class="node-icon" style="background: #DBEAFE;">📋</div>
+        <div class="node-title">Inquiry<br><small style="color:#64748b;font-weight:400;">Permintaan Penawaran</small></div>
+        <div class="node-tcode">VA11</div>
+        <div class="node-module">SD Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('quotation')">
+      <div class="node-card">
+        <div class="node-step">2</div>
+        <div class="node-icon" style="background: #DBEAFE;">📄</div>
+        <div class="node-title">Quotation<br><small style="color:#64748b;font-weight:400;">Penawaran Harga</small></div>
+        <div class="node-tcode">VA21</div>
+        <div class="node-module">SD Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('salesorder')">
+      <div class="node-card">
+        <div class="node-step">3</div>
+        <div class="node-icon" style="background: #DBEAFE;">🛒</div>
+        <div class="node-title">Sales Order<br><small style="color:#64748b;font-weight:400;">Pesanan Penjualan</small></div>
+        <div class="node-tcode">VA01</div>
+        <div class="node-module">SD Module</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin: 10px 0;">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <!-- Decision: Credit Check -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <div class="decision-diamond fade-in" onclick="showDetail('creditcheck')">
+      <div class="decision-text">Credit<br>Check?</div>
+    </div>
+    <div class="branch-container">
+      <div class="branch">
+        <div class="branch-label branch-no">TIDAK LULUS</div>
+        <div class="sub-node" style="border-left-color: #EF4444;" onclick="showDetail('creditblock')">
+          <div class="sub-title">🚫 Credit Block</div>
+          <div class="sub-tcode" style="color: #EF4444;">VKM1 / VKM3</div>
+        </div>
+      </div>
+      <div class="branch">
+        <div class="branch-label branch-yes">LULUS ✓</div>
+        <div class="arrow-down" style="height: 30px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2: Delivery -->
+  <div class="phase-banner fade-in">
+    <div class="phase-num">2</div>
+    <div class="phase-info">
+      <h3>Delivery & Shipping</h3>
+      <p>Modul SD/MM — Outbound Delivery & Goods Issue</p>
+    </div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center; flex-wrap: wrap; gap: 0;">
+    <div class="flow-node fade-in" onclick="showDetail('delivery')">
+      <div class="node-card">
+        <div class="node-step">4</div>
+        <div class="node-icon" style="background: #FEF3C7;">🚚</div>
+        <div class="node-title">Outbound Delivery<br><small style="color:#64748b;font-weight:400;">Pengiriman Keluar</small></div>
+        <div class="node-tcode">VL01N</div>
+        <div class="node-module">SD Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('picking')">
+      <div class="node-card">
+        <div class="node-step">5</div>
+        <div class="node-icon" style="background: #FEF3C7;">📦</div>
+        <div class="node-title">Picking & Packing<br><small style="color:#64748b;font-weight:400;">Pengambilan & Pengemasan</small></div>
+        <div class="node-tcode">VL02N</div>
+        <div class="node-module">SD/MM Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('goodsissue')">
+      <div class="node-card">
+        <div class="node-step">6</div>
+        <div class="node-icon" style="background: #FEF3C7;"></div>
+        <div class="node-title">Post Goods Issue<br><small style="color:#64748b;font-weight:400;">Pengeluaran Barang</small></div>
+        <div class="node-tcode">VL02N (PGI)</div>
+        <div class="node-module">SD/MM Module</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin: 10px 0;">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="sub-node fade-in" style="border-left-color: #10B981; min-width: 200px;" onclick="showDetail('materialdoc')">
+      <div class="sub-title">📋 Material Document</div>
+      <div class="sub-tcode">MIGO — Movement Type 601</div>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin: 10px 0;">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <!-- PHASE 3: Billing -->
+  <div class="phase-banner fade-in">
+    <div class="phase-num">3</div>
+    <div class="phase-info">
+      <h3>Billing & Invoicing</h3>
+      <p>Modul SD/FI — Pembuatan Faktur</p>
+    </div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center; flex-wrap: wrap; gap: 0;">
+    <div class="flow-node fade-in" onclick="showDetail('billing')">
+      <div class="node-card">
+        <div class="node-step">7</div>
+        <div class="node-icon" style="background: #D1FAE5;">🧾</div>
+        <div class="node-title">Create Billing Document<br><small style="color:#64748b;font-weight:400;">Terbit Faktur</small></div>
+        <div class="node-tcode">VF01</div>
+        <div class="node-module">SD/FI Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('billinglist')">
+      <div class="node-card">
+        <div class="node-step">8</div>
+        <div class="node-icon" style="background: #D1FAE5;">📑</div>
+        <div class="node-title">Billing Due List<br><small style="color:#64748b;font-weight:400;">Daftar Faktur Tertunda</small></div>
+        <div class="node-tcode">VF04</div>
+        <div class="node-module">SD Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('invoice')">
+      <div class="node-card">
+        <div class="node-step">9</div>
+        <div class="node-icon" style="background: #D1FAE5;"></div>
+        <div class="node-title">Customer Invoice<br><small style="color:#64748b;font-weight:400;">Faktur Pelanggan</small></div>
+        <div class="node-tcode">VF03 / FB70</div>
+        <div class="node-module">FI Module</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin: 10px 0;">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="sub-node fade-in" style="border-left-color: #10B981; min-width: 200px;" onclick="showDetail('accountingdoc')">
+      <div class="sub-title">📒 Accounting Document</div>
+      <div class="sub-tcode">FB03 — FI Posting (Dr. AR / Cr. Revenue)</div>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin: 10px 0;">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <!-- PHASE 4: Payment -->
+  <div class="phase-banner fade-in">
+    <div class="phase-num">4</div>
+    <div class="phase-info">
+      <h3>Incoming Payment & Clearing</h3>
+      <p>Modul FI — Penerimaan Pembayaran dari Pelanggan</p>
+    </div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center; flex-wrap: wrap; gap: 0;">
+    <div class="flow-node fade-in" onclick="showDetail('incomingpayment')">
+      <div class="node-card">
+        <div class="node-step">10</div>
+        <div class="node-icon" style="background: #EDE9FE;">💰</div>
+        <div class="node-title">Incoming Payment<br><small style="color:#64748b;font-weight:400;">Penerimaan Pembayaran</small></div>
+        <div class="node-tcode">F-28</div>
+        <div class="node-module">FI Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('paymentclearing')">
+      <div class="node-card">
+        <div class="node-step">11</div>
+        <div class="node-icon" style="background: #EDE9FE;">✅</div>
+        <div class="node-title">Payment Clearing<br><small style="color:#64748b;font-weight:400;">Penghapusan Piutang</small></div>
+        <div class="node-tcode">F-32</div>
+        <div class="node-module">FI Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('bankstatement')">
+      <div class="node-card">
+        <div class="node-step">12</div>
+        <div class="node-icon" style="background: #EDE9FE;">🏦</div>
+        <div class="node-title">Electronic Bank Statement<br><small style="color:#64748b;font-weight:400;">Rekonsiliasi Bank</small></div>
+        <div class="node-tcode">FF_5 / FEBAN</div>
+        <div class="node-module">FI Module</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin: 10px 0;">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center; flex-wrap: wrap; gap: 20px;">
+    <div class="sub-node fade-in" style="border-left-color: #8B5CF6; min-width: 180px;" onclick="showDetail('ardocument')">
+      <div class="sub-title">📒 AR Document</div>
+      <div class="sub-tcode" style="color: #8B5CF6;">FB03 — Dr. Bank / Cr. AR</div>
+    </div>
+    <div class="sub-node fade-in" style="border-left-color: #8B5CF6; min-width: 180px;" onclick="showDetail('customerstatement')">
+      <div class="sub-title">📊 Customer Statement</div>
+      <div class="sub-tcode" style="color: #8B5CF6;">F.27 / S_ALR_87012179</div>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: center; margin: 20px 0;">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="end-node fade-in" onclick="showDetail('end')">✅ Selesai — Proses O2C Lengkap</div>
+  </div>
+
+</div>
+
+<!-- Detail Panel -->
+<div class="overlay" id="overlay" onclick="closeDetail()"></div>
+<div class="detail-panel" id="detailPanel">
+  <div class="detail-header">
+    <button class="detail-close" onclick="closeDetail()">✕</button>
+    <h3 id="detailTitle">Detail</h3>
+    <div class="detail-tcode" id="detailTcode">—</div>
+  </div>
+  <div class="detail-body" id="detailBody"></div>
+</div>
+
+<div class="footer">
+  <strong>SAP ERP Order-to-Cash Flowchart</strong> — Standar Proses Bisnis SAP S/4HANA & ECC 6.0 | Modul SD (Sales & Distribution) & FI (Financial Accounting)
+</div>
+
+<script>
+const details = {
+  start: {
+    title: "Mulai Proses Penjualan",
+    tcode: "—",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Proses Order-to-Cash (O2C) dimulai ketika ada permintaan dari pelanggan atau prospek untuk membeli produk/jasa perusahaan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Pemicu Proses</h4>
+        <ul>
+          <li>Pelanggan menghubungi sales representative</li>
+          <li>Permintaan penawaran via email/portal</li>
+          <li>Repeat order dari pelanggan existing</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul Terkait</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  inquiry: {
+    title: "Inquiry — Permintaan Penawaran",
+    tcode: "VA11",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Inquiry adalah dokumen awal yang mencatat permintaan informasi dari calon pelanggan mengenai produk, harga, dan ketersediaan. Belum merupakan komitmen pembelian.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data yang Diinput</h4>
+        <ul>
+          <li>Nomor pelanggan (Sold-to Party)</li>
+          <li>Material yang ditanyakan</li>
+          <li>Jumlah (Quantity)</li>
+          <li>Tanggal permintaan</li>
+          <li>Organisasi penjualan, saluran distribusi, divisi</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output Dokumen</h4>
+        <ul>
+          <li>Nomor Inquiry (misal: 50000001)</li>
+          <li>Dasar pembuatan Quotation</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Sales</span>
+      </div>
+    `
+  },
+  quotation: {
+    title: "Quotation — Penawaran Harga",
+    tcode: "VA21",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Quotation adalah dokumen penawaran resmi kepada pelanggan yang berisi harga, kondisi pembayaran, dan masa berlaku penawaran. Dibuat berdasarkan Inquiry atau langsung.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data yang Diinput</h4>
+        <ul>
+          <li>Referensi dari Inquiry (opsional)</li>
+          <li>Harga penawaran (dapat dari condition record)</li>
+          <li>Diskon & surcharge</li>
+          <li>Validity period (masa berlaku)</li>
+          <li>Incoterms & shipping conditions</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output Dokumen</h4>
+        <ul>
+          <li>Nomor Quotation (misal: 20000001)</li>
+          <li>Print output penawaran ke pelanggan</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Sales</span>
+      </div>
+    `
+  },
+  salesorder: {
+    title: "Sales Order — Pesanan Penjualan",
+    tcode: "VA01",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Sales Order adalah dokumen komitmen resmi dari pelanggan untuk membeli barang/jasa. Merupakan dokumen utama dalam proses O2C yang menjadi dasar untuk delivery dan billing.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data yang Diinput</h4>
+        <ul>
+          <li>Order Type (OR, SO, dll)</li>
+          <li>Sold-to Party, Ship-to Party, Bill-to Party, Payer</li>
+          <li>Material, Quantity, Plant, Storage Location</li>
+          <li>Pricing (dari condition technique)</li>
+          <li>Schedule Line (tanggal pengiriman)</li>
+          <li>Payment Terms & Incoterms</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Proses Otomatis</h4>
+        <ul>
+          <li>Availability Check (ATP Check)</li>
+          <li>Credit Management Check</li>
+          <li>Pricing determination</li>
+          <li>Partner determination</li>
+          <li>Text determination</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output</h4>
+        <ul>
+          <li>Nomor Sales Order (misal: 90000001)</li>
+          <li>Schedule Lines untuk delivery</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Sales</span>
+      </div>
+    `
+  },
+  creditcheck: {
+    title: "Credit Check — Pengecekan Kredit",
+    tcode: "VKM1 / FD32",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>SAP secara otomatis melakukan pengecekan kredit pelanggan saat Sales Order dibuat. Sistem membandingkan outstanding receivables + order value dengan credit limit yang ditetapkan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Credit Check Types</h4>
+        <ul>
+          <li><strong>Static Check:</strong> Berdasarkan total outstanding</li>
+          <li><strong>Dynamic Check:</strong> Mempertimbangkan open items + oldest item</li>
+          <li><strong>Automatic Credit Control:</strong> Via OVA8 configuration</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Hasil</h4>
+        <ul>
+          <li>✅ Lulus → Proses lanjut ke delivery</li>
+          <li> Tidak lulus → Sales Order di-hold (credit block)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI-CR</span>
+      </div>
+    `
+  },
+  creditblock: {
+    title: "Credit Block — Pemblokiran Kredit",
+    tcode: "VKM1 / VKM3",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Sales Order diblokir karena pelanggan melebihi credit limit atau memiliki outstanding yang belum dibayar. Perlu approval dari Credit Manager untuk dilepas.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Tindakan</h4>
+        <ul>
+          <li>Credit Manager review via VKM1</li>
+          <li>Lepas blokade (release) via VKM2/VKM3</li>
+          <li>Atau hubungi pelanggan untuk pelunasan</li>
+          <li>Naikkan credit limit via FD32 (jika disetujui)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  delivery: {
+    title: "Outbound Delivery — Pengiriman Keluar",
+    tcode: "VL01N",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Outbound Delivery dibuat berdasarkan Sales Order. Dokumen ini menjadi dasar untuk proses picking, packing, dan goods issue. Menentukan bagaimana barang akan dikirim ke pelanggan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data yang Diinput</h4>
+        <ul>
+          <li>Referensi Sales Order number</li>
+          <li>Shipping Point</li>
+          <li>Selection Date</li>
+          <li>Route & Transportation</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output</h4>
+        <ul>
+          <li>Nomor Delivery (misal: 80000001)</li>
+          <li>Delivery Note untuk gudang</li>
+          <li>Picking list generation</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Shipping</span>
+      </div>
+    `
+  },
+  picking: {
+    title: "Picking & Packing",
+    tcode: "VL02N",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Proses pengambilan barang dari gudang (picking) dan pengemasan (packing) sesuai dengan delivery order. Status picking dicatat di sistem.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Aktivitas</h4>
+        <ul>
+          <li>Picking list dicetak dari delivery</li>
+          <li>Warehouse staff mengambil barang</li>
+          <li>Update picked quantity di VL02N</li>
+          <li>Packing: tentukan handling unit (HU)</li>
+          <li>Print shipping label & delivery note</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-mm">WM/EWM</span>
+      </div>
+    `
+  },
+  goodsissue: {
+    title: "Post Goods Issue (PGI)",
+    tcode: "VL02N",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Post Goods Issue adalah titik kritis di mana kepemilikan barang berpindah dari perusahaan ke pelanggan. Stok berkurang dan COGS diakui. Ini adalah trigger untuk billing.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Dampak di Sistem</h4>
+        <ul>
+          <li>📦 Stok berkurang (Movement Type 601)</li>
+          <li>📒 Accounting: Dr. COGS / Cr. Inventory</li>
+          <li>📊 Revenue recognition trigger</li>
+          <li> Material Document dibuat</li>
+          <li>✅ Delivery status = Completed</li>
+          <li> Billing dapat diproses</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal Otomatis</h4>
+        <ul>
+          <li><strong>Dr.</strong> Cost of Goods Sold (Beban Pokok)</li>
+          <li><strong>Cr.</strong> Inventory (Persediaan)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-mm">MM</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  materialdoc: {
+    title: "Material Document — Dokumen Material",
+    tcode: "MIGO / MB51",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Material Document adalah bukti pencatatan pergerakan barang di sistem SAP. Dibuat otomatis saat Post Goods Issue dengan Movement Type 601 (Goods Issue for Delivery).</p>
+      </div>
+      <div class="detail-section">
+        <h4>Informasi Dokumen</h4>
+        <ul>
+          <li>Material Document Number</li>
+          <li>Material, Quantity, Batch</li>
+          <li>Plant & Storage Location</li>
+          <li>Movement Type: 601</li>
+          <li>Reference: Delivery Number</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-mm">MM — Inventory</span>
+      </div>
+    `
+  },
+  billing: {
+    title: "Create Billing Document — Terbit Faktur",
+    tcode: "VF01",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Billing Document (Faktur) dibuat setelah Post Goods Issue selesai. Dokumen ini menjadi dasar penagihan ke pelanggan dan memicu posting ke modul FI (Accounts Receivable).</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data yang Diproses</h4>
+        <ul>
+          <li>Referensi Delivery Number</li>
+          <li>Pricing dari Sales Order</li>
+          <li>Tax determination (NW, MWST)</li>
+          <li>Payment Terms</li>
+          <li>Bill-to Party & Payer</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Dampak di FI</h4>
+        <ul>
+          <li>📒 Accounting Document otomatis dibuat</li>
+          <li><strong>Dr.</strong> Accounts Receivable (Piutang)</li>
+          <li><strong>Cr.</strong> Revenue (Pendapatan)</li>
+          <li><strong>Cr.</strong> Tax Payable (PPN)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output</h4>
+        <ul>
+          <li>Nomor Billing (misal: 900000001)</li>
+          <li>Invoice PDF untuk pelanggan</li>
+          <li>Accounting Document Number</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Billing</span>
+        <span class="detail-tag tag-fi">FI — AR</span>
+      </div>
+    `
+  },
+  billinglist: {
+    title: "Billing Due List",
+    tcode: "VF04",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Billing Due List menampilkan daftar delivery yang sudah PGI tetapi belum di-billing. Digunakan untuk mass processing pembuatan faktur.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Fungsi</h4>
+        <ul>
+          <li>Monitor delivery yang ready for billing</li>
+          <li>Mass billing processing</li>
+          <li>Filter by date, customer, sales org</li>
+          <li>Collective processing</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Billing</span>
+      </div>
+    `
+  },
+  invoice: {
+    title: "Customer Invoice — Faktur Pelanggan",
+    tcode: "VF03 / FB70",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Faktur pelanggan adalah dokumen tagihan resmi yang dikirim ke pelanggan. VF03 untuk display billing dari SD, FB70 untuk posting manual invoice di FI.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Informasi Faktur</h4>
+        <ul>
+          <li>Nomor Faktur / Invoice Number</li>
+          <li>Tanggal Faktur (Billing Date)</li>
+          <li>Due Date (berdasarkan payment terms)</li>
+          <li>Detail item, harga, pajak</li>
+          <li>Total amount & currency</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal Akuntansi</h4>
+        <ul>
+          <li><strong>Dr.</strong> Customer AR (Piutang Dagang)</li>
+          <li><strong>Cr.</strong> Sales Revenue (Pendapatan)</li>
+          <li><strong>Cr.</strong> Output Tax / PPN (Utang Pajak)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  accountingdoc: {
+    title: "Accounting Document — Dokumen Akuntansi",
+    tcode: "FB03",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Accounting Document dibuat otomatis saat billing dipost. Menampilkan seluruh jurnal akuntansi yang terkait dengan transaksi penjualan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Line Items</h4>
+        <ul>
+          <li>Debit: Customer Account (D)</li>
+          <li>Credit: Revenue Account (K)</li>
+          <li>Credit: Tax Account (K)</li>
+          <li>Credit: COGS (saat PGI)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI — General Ledger</span>
+      </div>
+    `
+  },
+  incomingpayment: {
+    title: "Incoming Payment — Penerimaan Pembayaran",
+    tcode: "F-28",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Transaksi F-28 digunakan untuk mencatat penerimaan pembayaran dari pelanggan. Pembayaran dapat berupa transfer bank, cek, atau tunai. Sistem melakukan clearing terhadap open items di akun piutang.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data yang Diinput</h4>
+        <ul>
+          <li>Bank Account (House Bank)</li>
+          <li>Customer Account</li>
+          <li>Amount & Currency</li>
+          <li>Assignment / Reference (nomor invoice)</li>
+          <li>Posting Date & Value Date</li>
+          <li>Payment Method</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal Akuntansi</h4>
+        <ul>
+          <li><strong>Dr.</strong> Bank Account (Kas/Bank)</li>
+          <li><strong>Cr.</strong> Customer AR (Piutang Dagang)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Alternatif T-Code</h4>
+        <ul>
+          <li><strong>F-28:</strong> Incoming Payment (manual)</li>
+          <li><strong>FB05:</strong> Post with Clearing</li>
+          <li><strong>FBE5:</strong> Electronic Payment Import</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI — AR</span>
+      </div>
+    `
+  },
+  paymentclearing: {
+    title: "Payment Clearing — Penghapusan Piutang",
+    tcode: "F-32",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Clearing adalah proses mencocokkan pembayaran dengan invoice yang outstanding. Setelah clearing, status invoice berubah dari "Open" menjadi "Cleared".</p>
+      </div>
+      <div class="detail-section">
+        <h4>Proses Clearing</h4>
+        <ul>
+          <li>Pilih customer account</li>
+          <li>Pilih open items (invoice) yang dibayar</li>
+          <li>Sistem match payment dengan invoice</li>
+          <li>Handle partial payment / residual items</li>
+          <li>Handle payment differences (discount, write-off)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Clearing Document</h4>
+        <ul>
+          <li>Nomor Clearing Document dibuat</li>
+          <li>Clearing Date tercatat</li>
+          <li>Status invoice = Cleared</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI — AR Clearing</span>
+      </div>
+    `
+  },
+  bankstatement: {
+    title: "Electronic Bank Statement (EBS)",
+    tcode: "FF_5 / FEBAN",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Electronic Bank Statement digunakan untuk mengimpor data mutasi bank secara elektronik (format MT940, CAMT.053, dll) dan melakukan auto-clearing terhadap open items.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Proses</h4>
+        <ul>
+          <li>Download bank statement dari bank</li>
+          <li>Upload via FF_5 (import)</li>
+          <li>Auto-matching berdasarkan reference/assignment</li>
+          <li>Review & post via FEBAN</li>
+          <li>Unmatched items ditangani manual</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Manfaat</h4>
+        <ul>
+          <li>Otomatisasi rekonsiliasi bank</li>
+          <li>Mengurangi input manual</li>
+          <li>Akurasi data lebih tinggi</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI — Bank Accounting</span>
+      </div>
+    `
+  },
+  ardocument: {
+    title: "AR Document — Dokumen Piutang",
+    tcode: "FB03",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Setelah incoming payment dipost dan di-clear, dokumen akuntansi AR menunjukkan bahwa piutang telah dilunasi. Status customer account update secara real-time.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal Final</h4>
+        <ul>
+          <li><strong>Dr.</strong> Bank Account</li>
+          <li><strong>Cr.</strong> Customer AR (Cleared)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI — AR</span>
+      </div>
+    `
+  },
+  customerstatement: {
+    title: "Customer Statement — Rekening Koran Pelanggan",
+    tcode: "F.27 / S_ALR_87012179",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Customer Statement menampilkan seluruh transaksi (invoice, payment, credit memo) untuk seorang pelanggan dalam periode tertentu. Digunakan untuk rekonsiliasi dengan pelanggan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Informasi</h4>
+        <ul>
+          <li>Opening Balance</li>
+          <li>Semua line items (Debit/Credit)</li>
+          <li>Cleared & Open Items</li>
+          <li>Closing Balance</li>
+          <li>Aging Analysis</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI — AR Reports</span>
+      </div>
+    `
+  },
+  end: {
+    title: "Proses Selesai",
+    tcode: "—",
+    body: `
+      <div class="detail-section">
+        <h4>✅ Order-to-Cash Complete!</h4>
+        <p>Seluruh proses penjualan dari inquiry hingga penerimaan pembayaran telah selesai. Seluruh dokumen dan jurnal akuntansi telah tercatat di sistem SAP.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Ringkasan Dokumen yang Dihasilkan</h4>
+        <ul>
+          <li>📋 Inquiry Document</li>
+          <li>📄 Quotation Document</li>
+          <li> Sales Order</li>
+          <li> Outbound Delivery</li>
+          <li>📋 Material Document (PGI)</li>
+          <li> Billing/Invoice Document</li>
+          <li>📒 Accounting Documents (FI)</li>
+          <li>💰 Payment Document</li>
+          <li>✅ Clearing Document</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul yang Terlibat</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI</span>
+        <span class="detail-tag tag-mm">MM</span>
+      </div>
+    `
+  }
+};
+
+function showDetail(key) {
+  const data = details[key];
+  if (!data) return;
+
+  document.getElementById('detailTitle').textContent = data.title;
+  document.getElementById('detailTcode').textContent = data.tcode;
+  document.getElementById('detailBody').innerHTML = data.body;
+
+  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+
+  // Remove active from all nodes
+  document.querySelectorAll('.flow-node').forEach(n => n.classList.remove('active'));
+}
+
+function closeDetail() {
+  document.getElementById('detailPanel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+  document.querySelectorAll('.flow-node').forEach(n => n.classList.remove('active'));
+}
+
+// Intersection Observer for fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

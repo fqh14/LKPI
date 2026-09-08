@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flowchart End-to-End Sales to Cash (Custom)</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-400-normal.css');
+  @import url('https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-600-normal.css');
+  @import url('https://cdn.jsdelivr.net/fontsource/fonts/inter@latest/latin-700-normal.css');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f4f8;
+    color: #1a2332;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #0070F2 0%, #003DA5 100%);
+    color: white;
+    padding: 28px 40px;
+    box-shadow: 0 4px 20px rgba(0,61,165,0.3);
+    position: relative;
+    z-index: 10;
+  }
+
+  .header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+  }
+
+  .header p {
+    font-size: 13px;
+    opacity: 0.85;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .header .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .header .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    backdrop-filter: blur(10px);
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px 40px;
+    background: white;
+    border-bottom: 1px solid #e2e8f0;
+    align-items: center;
+  }
+
+  .legend-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: 8px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #475569;
+  }
+
+  .legend-shape {
+    width: 28px;
+    height: 18px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .shape-process { background: #0070F2; }
+  .shape-decision { background: #F59E0B; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); width: 22px; height: 22px; }
+  .shape-start { background: #6366F1; border-radius: 12px; }
+  .shape-end { background: #EF4444; border-radius: 12px; }
+  .shape-doc { background: #10B981; }
+  .shape-transfer { background: #8B5CF6; }
+
+  .flowchart-container {
+    padding: 30px 40px;
+    position: relative;
+  }
+
+  .phase-banner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 30px 0 20px;
+    padding: 12px 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-left: 4px solid #0070F2;
+  }
+
+  .phase-banner.phase-2 { border-left-color: #F59E0B; }
+  .phase-banner.phase-3 { border-left-color: #10B981; }
+  .phase-banner.phase-4 { border-left-color: #8B5CF6; }
+  .phase-banner.phase-5 { border-left-color: #EC4899; }
+  .phase-banner.phase-6 { border-left-color: #06B6D4; }
+  .phase-banner.phase-7 { border-left-color: #EF4444; }
+
+  .phase-banner .phase-num {
+    width: 32px;
+    height: 32px;
+    background: #0070F2;
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  .phase-banner.phase-2 .phase-num { background: #F59E0B; }
+  .phase-banner.phase-3 .phase-num { background: #10B981; }
+  .phase-banner.phase-4 .phase-num { background: #8B5CF6; }
+  .phase-banner.phase-5 .phase-num { background: #EC4899; }
+  .phase-banner.phase-6 .phase-num { background: #06B6D4; }
+  .phase-banner.phase-7 .phase-num { background: #EF4444; }
+
+  .phase-banner .phase-info h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a2332;
+  }
+
+  .phase-banner .phase-info p {
+    font-size: 11px;
+    color: #64748b;
+  }
+
+  .flow-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 16px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .flow-node {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-shrink: 0;
+  }
+
+  .flow-node:hover {
+    transform: translateY(-4px);
+  }
+
+  .flow-node:hover .node-card {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  }
+
+  .node-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 18px;
+    min-width: 160px;
+    max-width: 200px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .node-card.card-warning { border-color: #F59E0B; }
+  .node-card.card-success { border-color: #10B981; }
+  .node-card.card-purple { border-color: #8B5CF6; }
+  .node-card.card-pink { border-color: #EC4899; }
+  .node-card.card-cyan { border-color: #06B6D4; }
+
+  .node-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 20px;
+  }
+
+  .node-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a2332;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .node-subtitle {
+    font-size: 10px;
+    color: #64748b;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+
+  .node-tcode {
+    font-size: 10px;
+    font-weight: 600;
+    color: #0070F2;
+    background: #EBF3FF;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 4px;
+  }
+
+  .node-module {
+    font-size: 9px;
+    color: #8B5CF6;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  .node-step {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #0070F2;
+    color: white;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,112,242,0.3);
+    z-index: 5;
+  }
+
+  .arrow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    flex-shrink: 0;
+  }
+
+  .arrow-right {
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #0070F2, #60A5FA);
+    position: relative;
+    border-radius: 2px;
+  }
+
+  .arrow-right::after {
+    content: '';
+    position: absolute;
+    right: -2px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left: 9px solid #60A5FA;
+  }
+
+  .arrow-right.arrow-warning { background: linear-gradient(90deg, #F59E0B, #FCD34D); }
+  .arrow-right.arrow-warning::after { border-left-color: #FCD34D; }
+  .arrow-right.arrow-success { background: linear-gradient(90deg, #10B981, #6EE7B7); }
+  .arrow-right.arrow-success::after { border-left-color: #6EE7B7; }
+  .arrow-right.arrow-purple { background: linear-gradient(90deg, #8B5CF6, #C4B5FD); }
+  .arrow-right.arrow-purple::after { border-left-color: #C4B5FD; }
+  .arrow-right.arrow-pink { background: linear-gradient(90deg, #EC4899, #F9A8D4); }
+  .arrow-right.arrow-pink::after { border-left-color: #F9A8D4; }
+
+  .arrow-down {
+    width: 3px;
+    height: 40px;
+    background: linear-gradient(180deg, #0070F2, #60A5FA);
+    position: relative;
+    border-radius: 2px;
+    margin: 0 auto;
+  }
+
+  .arrow-down::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top: 9px solid #60A5FA;
+  }
+
+  .arrow-down.arrow-warning { background: linear-gradient(180deg, #F59E0B, #FCD34D); }
+  .arrow-down.arrow-warning::after { border-top-color: #FCD34D; }
+  .arrow-down.arrow-success { background: linear-gradient(180deg, #10B981, #6EE7B7); }
+  .arrow-down.arrow-success::after { border-top-color: #6EE7B7; }
+  .arrow-down.arrow-purple { background: linear-gradient(180deg, #8B5CF6, #C4B5FD); }
+  .arrow-down.arrow-purple::after { border-top-color: #C4B5FD; }
+  .arrow-down.arrow-pink { background: linear-gradient(180deg, #EC4899, #F9A8D4); }
+  .arrow-down.arrow-pink::after { border-top-color: #F9A8D4; }
+
+  .arrow-down-long {
+    width: 3px;
+    height: 50px;
+    background: linear-gradient(180deg, #0070F2, #60A5FA);
+    position: relative;
+    border-radius: 2px;
+    margin: 0 auto;
+  }
+
+  .arrow-down-long::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top: 9px solid #60A5FA;
+  }
+
+  .decision-diamond {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, #F59E0B, #D97706);
+    transform: rotate(45deg);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(245,158,11,0.3);
+    margin: 15px auto;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .decision-diamond:hover {
+    transform: rotate(45deg) scale(1.08);
+  }
+
+  .decision-text {
+    transform: rotate(-45deg);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.3;
+    padding: 8px;
+  }
+
+  .branch-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+    margin: 10px 0;
+  }
+
+  .branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .branch-label {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 10px;
+    color: white;
+  }
+
+  .branch-yes { background: #10B981; }
+  .branch-no { background: #EF4444; }
+  .branch-alt { background: #8B5CF6; }
+
+  .start-node {
+    background: linear-gradient(135deg, #6366F1, #4F46E5);
+    color: white;
+    border-radius: 30px;
+    padding: 14px 32px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(99,102,241,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .start-node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(99,102,241,0.4);
+  }
+
+  .end-node {
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    color: white;
+    border-radius: 30px;
+    padding: 14px 32px;
+    font-weight: 700;
+    font-size: 14px;
+    box-shadow: 0 4px 15px rgba(239,68,68,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .end-node:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(239,68,68,0.4);
+  }
+
+  .sub-node {
+    background: white;
+    border-radius: 8px;
+    padding: 10px 14px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-left: 4px solid #10B981;
+    min-width: 140px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .sub-node:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  }
+
+  .sub-node .sub-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1a2332;
+  }
+
+  .sub-node .sub-tcode {
+    font-size: 9px;
+    color: #10B981;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+
+  .sub-node.border-warning { border-left-color: #F59E0B; }
+  .sub-node.border-warning .sub-tcode { color: #F59E0B; }
+  .sub-node.border-purple { border-left-color: #8B5CF6; }
+  .sub-node.border-purple .sub-tcode { color: #8B5CF6; }
+  .sub-node.border-pink { border-left-color: #EC4899; }
+  .sub-node.border-pink .sub-tcode { color: #EC4899; }
+  .sub-node.border-cyan { border-left-color: #06B6D4; }
+  .sub-node.border-cyan .sub-tcode { color: #06B6D4; }
+
+  .info-box {
+    background: #F8FAFC;
+    border: 1px dashed #94a3b8;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 11px;
+    color: #475569;
+    text-align: center;
+    margin: 10px auto;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .info-box strong { color: #1a2332; }
+
+  .dual-scenario {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin: 15px 0;
+    flex-wrap: wrap;
+  }
+
+  .scenario-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 220px;
+    max-width: 280px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-top: 4px solid #06B6D4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .scenario-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+  }
+
+  .scenario-card.scenario-b { border-top-color: #8B5CF6; }
+
+  .scenario-card h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: #1a2332;
+    margin-bottom: 6px;
+  }
+
+  .scenario-card p {
+    font-size: 10px;
+    color: #64748b;
+    line-height: 1.5;
+  }
+
+  .scenario-card .scenario-tcode {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #06B6D4;
+    background: #ECFEFF;
+    padding: 2px 8px;
+    border-radius: 8px;
+  }
+
+  .scenario-card.scenario-b .scenario-tcode { color: #8B5CF6; background: #F5F3FF; }
+
+  .detail-panel {
+    position: fixed;
+    right: -420px;
+    top: 0;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -8px 0 30px rgba(0,0,0,0.15);
+    z-index: 1000;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+
+  .detail-panel.open { right: 0; }
+
+  .detail-header {
+    background: linear-gradient(135deg, #0070F2, #003DA5);
+    color: white;
+    padding: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .detail-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .detail-close:hover { background: rgba(255,255,255,0.3); }
+
+  .detail-header h3 {
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .detail-header .detail-tcode {
+    font-size: 12px;
+    opacity: 0.85;
+    background: rgba(255,255,255,0.2);
+    padding: 3px 12px;
+    border-radius: 12px;
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+  .detail-body { padding: 24px; }
+
+  .detail-section { margin-bottom: 18px; }
+
+  .detail-section h4 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #f1f5f9;
+  }
+
+  .detail-section p, .detail-section li {
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.6;
+  }
+
+  .detail-section ul { padding-left: 16px; }
+  .detail-section li { margin-bottom: 4px; }
+
+  .detail-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    margin: 2px;
+  }
+
+  .tag-sd { background: #DBEAFE; color: #1D4ED8; }
+  .tag-fi { background: #D1FAE5; color: #047857; }
+  .tag-mm { background: #FEF3C7; color: #92400E; }
+  .tag-pp { background: #FCE7F3; color: #9D174D; }
+  .tag-wm { background: #EDE9FE; color: #5B21B6; }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .overlay.show { opacity: 1; pointer-events: all; }
+
+  .footer {
+    background: #1a2332;
+    color: #94a3b8;
+    padding: 20px 40px;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .footer strong { color: white; }
+
+  .center-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .warehouse-visual {
+    background: linear-gradient(135deg, #F0F9FF, #E0F2FE);
+    border: 2px dashed #0284C7;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 10px 0;
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .warehouse-visual h5 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0284C7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .warehouse-visual .wh-items {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .wh-item {
+    background: white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    border-left: 3px solid #0284C7;
+  }
+
+  .wh-item strong { display: block; color: #1a2332; font-size: 11px; }
+  .wh-item span { color: #64748b; }
+
+  @media (max-width: 900px) {
+    .flow-row { flex-direction: column; align-items: center; }
+    .arrow-right { width: 3px; height: 30px; }
+    .arrow-right::after { border: 6px solid transparent; border-top: 9px solid #60A5FA; border-left: 6px solid transparent; right: 50%; top: auto; bottom: -2px; transform: translateX(50%); }
+    .detail-panel { width: 100%; right: -100%; }
+    .flowchart-container { padding: 20px; }
+    .dual-scenario { flex-direction: column; align-items: center; }
+  }
+
+  .fade-in {
+    animation: fadeIn 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn { to { opacity: 1; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📊 Flowchart End-to-End Sales to Cash</h1>
+  <p>Quotation → Sales Order → Stock Check → Delivery → Packing → Virtual WH → Barcode → Consolidation → Loading → Transit → POD → Invoice → Payment</p>
+  <div class="badges">
+    <span class="badge">📦 Modul SD, MM, PP, FI, WM/EWM</span>
+    <span class="badge">🏭 Back Order → PPIC</span>
+    <span class="badge">🏪 Virtual Warehouse Sales</span>
+  </div>
+</div>
+
+<div class="legend">
+  <span class="legend-title">Legenda:</span>
+  <div class="legend-item"><div class="legend-shape shape-start"></div> Mulai</div>
+  <div class="legend-item"><div class="legend-shape shape-process"></div> Proses Utama</div>
+  <div class="legend-item"><div class="legend-shape shape-doc"></div> Dokumen Output</div>
+  <div class="legend-item"><div class="legend-shape shape-decision"></div> Keputusan</div>
+  <div class="legend-item"><div class="legend-shape shape-transfer"></div> Transfer/Inventory</div>
+  <div class="legend-item"><div class="legend-shape shape-end"></div> Selesai</div>
+</div>
+
+<div class="flowchart-container">
+
+  <!-- PHASE 1: Pre-Sales -->
+  <div class="phase-banner fade-in">
+    <div class="phase-num">1</div>
+    <div class="phase-info">
+      <h3>Pre-Sales — Quotation, Credit Check & Sales Order</h3>
+      <p>Modul SD — Penawaran, Pengecekan Kredit, dan Pesanan Penjualan</p>
+    </div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center; margin-bottom: 10px;">
+    <div class="start-node fade-in" onclick="showDetail('start')">🚀 Mulai Proses Penjualan</div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down"></div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="flow-node fade-in" onclick="showDetail('quotation')">
+      <div class="node-card">
+        <div class="node-step">1</div>
+        <div class="node-icon" style="background: #DBEAFE;">📄</div>
+        <div class="node-title">Sales Quotation</div>
+        <div class="node-subtitle">Penawaran Harga ke Pelanggan</div>
+        <div class="node-tcode">VA21</div>
+        <div class="node-module">SD Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('creditcheck')">
+      <div class="node-card card-warning">
+        <div class="node-step">2</div>
+        <div class="node-icon" style="background: #FEF3C7;">🔍</div>
+        <div class="node-title">Credit Check</div>
+        <div class="node-subtitle">Pengecekan Limit Kredit</div>
+        <div class="node-tcode">VKM1 / FD32</div>
+        <div class="node-module">SD + FI-CR</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right arrow-success"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('salesorder')">
+      <div class="node-card card-success">
+        <div class="node-step">3</div>
+        <div class="node-icon" style="background: #D1FAE5;">🛒</div>
+        <div class="node-title">Sales Order</div>
+        <div class="node-subtitle">Pesanan Penjualan Resmi</div>
+        <div class="node-tcode">VA01</div>
+        <div class="node-module">SD Module</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <!-- PHASE 2: Stock Check -->
+  <div class="phase-banner phase-2 fade-in">
+    <div class="phase-num">2</div>
+    <div class="phase-info">
+      <h3>Stock Availability Check (ATP) & Back Order Handling</h3>
+      <p>Modul SD/MM/PP — Pengecekan Ketersediaan Stok & Penanganan Back Order ke PPIC</p>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="decision-diamond fade-in" onclick="showDetail('atpcheck')">
+      <div class="decision-text">Stock<br>Available?</div>
+    </div>
+  </div>
+
+  <div class="branch-container">
+    <div class="branch">
+      <div class="branch-label branch-no">STOCK = 0</div>
+      <div class="arrow-down arrow-warning" style="height: 25px;"></div>
+      <div class="flow-node fade-in" onclick="showDetail('backorder')">
+        <div class="node-card card-warning">
+          <div class="node-step">4a</div>
+          <div class="node-icon" style="background: #FEF3C7;">🔄</div>
+          <div class="node-title">Back Order</div>
+          <div class="node-subtitle">Pesanan Ditunda</div>
+          <div class="node-tcode">CO01 / MD04</div>
+          <div class="node-module">PP Module (PPIC)</div>
+        </div>
+      </div>
+      <div class="arrow-down arrow-warning" style="height: 25px;"></div>
+      <div class="sub-node border-warning fade-in" onclick="showDetail('production')">
+        <div class="sub-title">🏭 Production Order</div>
+        <div class="sub-tcode">PPIC Kelola Produksi</div>
+      </div>
+      <div class="arrow-down arrow-warning" style="height: 25px;"></div>
+      <div class="sub-node border-warning fade-in" onclick="showDetail('grproduction')">
+        <div class="sub-title">📥 Goods Receipt Produksi</div>
+        <div class="sub-tcode">MIGO — Movement 101</div>
+      </div>
+      <div class="info-box" style="margin-top: 10px; max-width: 300px;">
+        <strong>🔄 Loop:</strong> Setelah stok tersedia, kembali ke alur Delivery Order
+      </div>
+    </div>
+    <div class="branch">
+      <div class="branch-label branch-yes">STOCK ADA ✓</div>
+      <div class="arrow-down arrow-success" style="height: 25px;"></div>
+      <div class="flow-node fade-in" onclick="showDetail('deliveryorder')">
+        <div class="node-card card-success">
+          <div class="node-step">4b</div>
+          <div class="node-icon" style="background: #D1FAE5;">🚚</div>
+          <div class="node-title">Delivery Order</div>
+          <div class="node-subtitle">Outbound Delivery</div>
+          <div class="node-tcode">VL01N</div>
+          <div class="node-module">SD Module</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down-long arrow-success"></div>
+  </div>
+
+  <!-- PHASE 3: Packing & Virtual WH -->
+  <div class="phase-banner phase-3 fade-in">
+    <div class="phase-num">3</div>
+    <div class="phase-info">
+      <h3>Packing, Inventory Transfer & Virtual Warehouse Sales</h3>
+      <p>Modul SD/MM/WM — Pengemasan oleh Gudang & Transfer ke Gudang Virtual Penjualan</p>
+    </div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="flow-node fade-in" onclick="showDetail('packing')">
+      <div class="node-card card-success">
+        <div class="node-step">5</div>
+        <div class="node-icon" style="background: #D1FAE5;">📦</div>
+        <div class="node-title">Packing / Pengemasan</div>
+        <div class="node-subtitle">Oleh Pihak Gudang</div>
+        <div class="node-tcode">VL02N / HU</div>
+        <div class="node-module">SD + WM/EWM</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right arrow-success"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('pgi')">
+      <div class="node-card card-success">
+        <div class="node-step">6</div>
+        <div class="node-icon" style="background: #D1FAE5;">📤</div>
+        <div class="node-title">Post Goods Issue</div>
+        <div class="node-subtitle">Pengeluaran Barang dari WH Utama</div>
+        <div class="node-tcode">VL02N (PGI)</div>
+        <div class="node-module">SD/MM Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right arrow-purple"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('invtransfer')">
+      <div class="node-card card-purple">
+        <div class="node-step">7</div>
+        <div class="node-icon" style="background: #EDE9FE;">🔄</div>
+        <div class="node-title">Inventory Transfer</div>
+        <div class="node-subtitle">Ke Gudang Virtual Penjualan</div>
+        <div class="node-tcode">MIGO / MB1B</div>
+        <div class="node-module">MM/WM Module</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down arrow-purple" style="height: 30px;"></div>
+  </div>
+
+  <div class="warehouse-visual fade-in">
+    <h5>🏪 Gudang Virtual Penjualan (Virtual Sales Warehouse)</h5>
+    <div class="wh-items">
+      <div class="wh-item">
+        <strong>📦 DO-001</strong>
+        <span>Barcode: BC-1001</span>
+      </div>
+      <div class="wh-item">
+        <strong>📦 DO-002</strong>
+        <span>Barcode: BC-1002</span>
+      </div>
+      <div class="wh-item">
+        <strong>📦 DO-003</strong>
+        <span>Barcode: BC-1003</span>
+      </div>
+      <div class="wh-item">
+        <strong>📦 DO-004</strong>
+        <span>Barcode: BC-1004</span>
+      </div>
+    </div>
+    <p style="font-size: 10px; color: #64748b; margin-top: 10px;">Stok dipindahkan dari WH utama → Virtual WH Sales. Setiap item memiliki barcode unik untuk tracking.</p>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down arrow-purple" style="height: 30px;"></div>
+  </div>
+
+  <!-- PHASE 4: Marketing & Consolidation -->
+  <div class="phase-banner phase-4 fade-in">
+    <div class="phase-num">4</div>
+    <div class="phase-info">
+      <h3>Marketing Barcode Selection & Route Consolidation</h3>
+      <p>Modul SD — Pemilihan Barcode oleh Marketing & Pengelompokan Rute Pengiriman</p>
+    </div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="flow-node fade-in" onclick="showDetail('barcodeselect')">
+      <div class="node-card card-purple">
+        <div class="node-step">8</div>
+        <div class="node-icon" style="background: #EDE9FE;">📱</div>
+        <div class="node-title">Barcode Selection</div>
+        <div class="node-subtitle">Marketing Pilih Barcode Sesuai DO</div>
+        <div class="node-tcode">Virtual WH Lookup</div>
+        <div class="node-module">Marketing + MM</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right arrow-purple"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('consolidation')">
+      <div class="node-card card-purple">
+        <div class="node-step">9</div>
+        <div class="node-icon" style="background: #EDE9FE;">🗺️</div>
+        <div class="node-title">Route Consolidation</div>
+        <div class="node-subtitle">Kelompokkan DO Searah → 1 Pengiriman</div>
+        <div class="node-tcode">VT01 / Route Grouping</div>
+        <div class="node-module">SD-LES / LE</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right arrow-pink"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('shipment')">
+      <div class="node-card card-pink">
+        <div class="node-step">10</div>
+        <div class="node-icon" style="background: #FCE7F3;">🚛</div>
+        <div class="node-title">Shipment Order</div>
+        <div class="node-subtitle">Perintah Pengiriman ke Gudang</div>
+        <div class="node-tcode">VT01N</div>
+        <div class="node-module">LE-TRA Module</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down arrow-pink" style="height: 30px;"></div>
+  </div>
+
+  <!-- PHASE 5: Loading, Transit & POD -->
+  <div class="phase-banner phase-5 fade-in">
+    <div class="phase-num">5</div>
+    <div class="phase-info">
+      <h3>Loading, Transit Status & Proof of Delivery (POD)</h3>
+      <p>Modul LE/MM — Loading ke Armada, Perpindahan Status ke Transit, dan Bukti Penerimaan</p>
+    </div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="flow-node fade-in" onclick="showDetail('loading')">
+      <div class="node-card card-pink">
+        <div class="node-step">11</div>
+        <div class="node-icon" style="background: #FCE7F3;">🏗️</div>
+        <div class="node-title">Loading ke Armada</div>
+        <div class="node-subtitle">Oleh Pihak Gudang</div>
+        <div class="node-tcode">VL02N / LT03</div>
+        <div class="node-module">WM/EWM Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right arrow-pink"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('transit')">
+      <div class="node-card card-pink">
+        <div class="node-step">12</div>
+        <div class="node-icon" style="background: #FCE7F3;">🚚</div>
+        <div class="node-title">Status Transit</div>
+        <div class="node-subtitle">Virtual WH → Transit Sales (Ongoing)</div>
+        <div class="node-tcode">Inventory Transfer</div>
+        <div class="node-module">MM/WM Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right arrow-pink"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('pod')">
+      <div class="node-card card-pink">
+        <div class="node-step">13</div>
+        <div class="node-icon" style="background: #FCE7F3;">✍️</div>
+        <div class="node-title">Proof of Delivery</div>
+        <div class="node-subtitle">TTD & Bukti Penerimaan Konsumen</div>
+        <div class="node-tcode">VL32N / POD</div>
+        <div class="node-module">LE / Armada</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down" style="height: 30px;"></div>
+  </div>
+
+  <div class="info-box fade-in">
+    <strong>📋 Status Perpindahan Stok:</strong> Gudang Utama → <span style="color:#8B5CF6;">Gudang Virtual Penjualan</span> → <span style="color:#EC4899;">Transit Sales (Ongoing)</span> → <span style="color:#10B981;">Customer (Delivered)</span>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <!-- PHASE 6: Billing -->
+  <div class="phase-banner phase-6 fade-in">
+    <div class="phase-num">6</div>
+    <div class="phase-info">
+      <h3>Billing / Terbit Faktur — Dual Scenario</h3>
+      <p>Modul SD/FI — Faktur dapat terbit bersamaan pengiriman ATAU setelah barang diterima konsumen</p>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="decision-diamond fade-in" onclick="showDetail('billingscenario')">
+      <div class="decision-text">Kapan<br>Faktur<br>Terbit?</div>
+    </div>
+  </div>
+
+  <div class="dual-scenario">
+    <div class="scenario-card fade-in" onclick="showDetail('billingA')">
+      <h4>🅰️ Skenario A — Faktur Saat Pengiriman</h4>
+      <p>Faktur diterbitkan bersamaan dengan proses pengiriman barang. Biasanya untuk pelanggan dengan kepercayaan tinggi atau transaksi tunai/transfer langsung.</p>
+      <span class="scenario-tcode">VF01 — Triggered by PGI</span>
+    </div>
+    <div class="scenario-card scenario-b fade-in" onclick="showDetail('billingB')">
+      <h4>🅱️ Skenario B — Faktur Setelah Diterima</h4>
+      <p>Faktur diterbitkan SETELAH konsumen menandatangani Proof of Delivery (POD). Trigger dari konfirmasi penerimaan barang oleh pelanggan.</p>
+      <span class="scenario-tcode">VF01 — Triggered by POD</span>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down" style="height: 30px;"></div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="flow-node fade-in" onclick="showDetail('billing')">
+      <div class="node-card card-cyan">
+        <div class="node-step">14</div>
+        <div class="node-icon" style="background: #ECFEFF;">🧾</div>
+        <div class="node-title">Billing Document</div>
+        <div class="node-subtitle">Terbit Faktur Pajak / Invoice</div>
+        <div class="node-tcode">VF01</div>
+        <div class="node-module">SD/FI Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('accountingdoc')">
+      <div class="node-card card-cyan">
+        <div class="node-step">15</div>
+        <div class="node-icon" style="background: #ECFEFF;">📒</div>
+        <div class="node-title">Accounting Document</div>
+        <div class="node-subtitle">Dr. AR / Cr. Revenue / Cr. Tax</div>
+        <div class="node-tcode">FB03 (Display)</div>
+        <div class="node-module">FI Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('invoiceprint')">
+      <div class="node-card card-cyan">
+        <div class="node-step">16</div>
+        <div class="node-icon" style="background: #ECFEFF;">📨</div>
+        <div class="node-title">Invoice Output</div>
+        <div class="node-subtitle">Kirim Faktur ke Pelanggan</div>
+        <div class="node-tcode">VF03 / Email/Print</div>
+        <div class="node-module">FI/SD Module</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <!-- PHASE 7: Payment -->
+  <div class="phase-banner phase-7 fade-in">
+    <div class="phase-num">7</div>
+    <div class="phase-info">
+      <h3>Incoming Payment — Penerimaan Pembayaran dari Konsumen</h3>
+      <p>Modul FI — Konsumen Membayar Hutang, Sistem Mencatat Incoming Payment & Clearing</p>
+    </div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="flow-node fade-in" onclick="showDetail('paymentreceive')">
+      <div class="node-card" style="border-color: #EF4444;">
+        <div class="node-step">17</div>
+        <div class="node-icon" style="background: #FEE2E2;">💰</div>
+        <div class="node-title">Konsumen Bayar</div>
+        <div class="node-subtitle">Transfer / Cek / Tunai</div>
+        <div class="node-tcode">Payment Terms</div>
+        <div class="node-module">Customer Action</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('incomingpayment')">
+      <div class="node-card" style="border-color: #EF4444;">
+        <div class="node-step">18</div>
+        <div class="node-icon" style="background: #FEE2E2;">🏦</div>
+        <div class="node-title">Incoming Payment</div>
+        <div class="node-subtitle">Catat Penerimaan di ERP</div>
+        <div class="node-tcode">F-28</div>
+        <div class="node-module">FI-AR Module</div>
+      </div>
+    </div>
+    <div class="arrow-container"><div class="arrow-right"></div></div>
+    <div class="flow-node fade-in" onclick="showDetail('clearing')">
+      <div class="node-card" style="border-color: #EF4444;">
+        <div class="node-step">19</div>
+        <div class="node-icon" style="background: #FEE2E2;">✅</div>
+        <div class="node-title">Payment Clearing</div>
+        <div class="node-subtitle">Hapus Piutang (Open → Cleared)</div>
+        <div class="node-tcode">F-32 / Auto EBS</div>
+        <div class="node-module">FI-AR Module</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="center-col">
+    <div class="arrow-down-long"></div>
+  </div>
+
+  <div class="flow-row" style="justify-content: center;">
+    <div class="end-node fade-in" onclick="showDetail('end')">✅ Selesai — Proses End-to-End Sales to Cash Lengkap</div>
+  </div>
+
+</div>
+
+<!-- Detail Panel -->
+<div class="overlay" id="overlay" onclick="closeDetail()"></div>
+<div class="detail-panel" id="detailPanel">
+  <div class="detail-header">
+    <button class="detail-close" onclick="closeDetail()">✕</button>
+    <h3 id="detailTitle">Detail</h3>
+    <div class="detail-tcode" id="detailTcode">—</div>
+  </div>
+  <div class="detail-body" id="detailBody"></div>
+</div>
+
+<div class="footer">
+  <strong>End-to-End Sales to Cash Flowchart</strong> — Standar Proses Bisnis Modul SD, MM, PP, FI, WM/EWM, LE-TRA
+</div>
+
+<script>
+const details = {
+  start: {
+    title: "Mulai Proses Penjualan",
+    tcode: "—",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Proses End-to-End Sales to Cash dimulai ketika ada permintaan dari pelanggan atau prospek untuk membeli produk/jasa perusahaan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Pemicu Proses</h4>
+        <ul>
+          <li>Pelanggan menghubungi sales representative</li>
+          <li>Permintaan penawaran via email/portal</li>
+          <li>Repeat order dari pelanggan existing</li>
+          <li>Lead dari campaign marketing</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul Terkait</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  quotation: {
+    title: "Sales Quotation — Penawaran Harga",
+    tcode: "VA21",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Sales Quotation adalah dokumen penawaran resmi kepada pelanggan yang berisi harga, kondisi pembayaran, dan masa berlaku penawaran. Menjadi dasar negosiasi sebelum Sales Order.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data yang Diinput</h4>
+        <ul>
+          <li>Sold-to Party & Ship-to Party</li>
+          <li>Material, Quantity, Price</li>
+          <li>Condition Records (diskon, pajak)</li>
+          <li>Validity Period (masa berlaku)</li>
+          <li>Incoterms & Payment Terms</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output</h4>
+        <ul>
+          <li>Nomor Quotation (misal: 20000001)</li>
+          <li>Print/PDF penawaran ke pelanggan</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Sales</span>
+      </div>
+    `
+  },
+  creditcheck: {
+    title: "Credit Check — Pengecekan Kredit",
+    tcode: "VKM1 / FD32",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Sistem melakukan pengecekan kredit pelanggan secara otomatis. Membandingkan outstanding receivables + order value dengan credit limit yang ditetapkan di master data customer.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Hasil Pengecekan</h4>
+        <ul>
+          <li><strong>✅ Lulus:</strong> Limit mencukupi → lanjut ke Sales Order</li>
+          <li><strong>❌ Tidak Lulus:</strong> Sales Order di-block, perlu approval Credit Manager via VKM1/VKM3</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Credit Check Types</h4>
+        <ul>
+          <li>Static Credit Check (OVA8)</li>
+          <li>Dynamic Credit Check (oldest open item)</li>
+          <li>Maximum Document Value Check</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI-CR</span>
+      </div>
+    `
+  },
+  salesorder: {
+    title: "Sales Order — Pesanan Penjualan",
+    tcode: "VA01",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Sales Order adalah dokumen komitmen resmi dari pelanggan. Merupakan dokumen utama dalam proses O2C yang menjadi dasar untuk delivery, billing, dan payment.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data Utama</h4>
+        <ul>
+          <li>Order Type (OR, SO, CASH, dll)</li>
+          <li>Partner Functions: Sold-to, Ship-to, Bill-to, Payer</li>
+          <li>Material, Quantity, Plant, Storage Location</li>
+          <li>Pricing (condition technique)</li>
+          <li>Schedule Lines (tanggal pengiriman)</li>
+          <li>Payment Terms & Incoterms</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Proses Otomatis</h4>
+        <ul>
+          <li>Availability Check (ATP)</li>
+          <li>Credit Management</li>
+          <li>Pricing Determination</li>
+          <li>Partner & Text Determination</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output</h4>
+        <ul>
+          <li>Nomor Sales Order (misal: 90000001)</li>
+          <li>Schedule Lines untuk delivery planning</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Sales</span>
+      </div>
+    `
+  },
+  atpcheck: {
+    title: "ATP Check — Availability to Promise",
+    tcode: "CO09 / MD04",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Sistem melakukan pengecekan ketersediaan stok secara otomatis saat Sales Order dibuat. ATP check mempertimbangkan stok fisik, stok dalam perjalanan, dan rencana produksi.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Komponen ATP</h4>
+        <ul>
+          <li>Unrestricted Stock (stok tersedia)</li>
+          <li>Planned Orders (rencana produksi)</li>
+          <li>Purchase Orders (PO inbound)</li>
+          <li>Sales Orders lain (demand)</li>
+          <li>Safety Stock</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Hasil</h4>
+        <ul>
+          <li><strong>✅ Stock Available:</strong> Schedule line confirmed → lanjut ke Delivery Order</li>
+          <li><strong>❌ Stock = 0:</strong> Schedule line not confirmed → Back Order ke PPIC</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-mm">MM</span>
+        <span class="detail-tag tag-pp">PP</span>
+      </div>
+    `
+  },
+  backorder: {
+    title: "Back Order — Pesanan Ditunda",
+    tcode: "CO01 / MD04",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Ketika stok tidak tersedia (stock = 0), Sales Order masuk ke status Back Order. PPIC (Production Planning & Inventory Control) akan mengelola pemenuhan stok melalui produksi atau procurement.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Tindakan PPIC</h4>
+        <ul>
+          <li>Review MRP (Material Requirements Planning)</li>
+          <li>Buat Production Order (jika barang diproduksi internal)</li>
+          <li>Buat Purchase Requisition → Purchase Order (jika beli dari supplier)</li>
+          <li>Tentukan prioritas berdasarkan delivery date</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Monitoring</h4>
+        <ul>
+          <li>MD04 — Stock/Requirements List</li>
+          <li>CO09 — Availability Overview</li>
+          <li>Backorder Processing (V_V2)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-pp">PP — PPIC</span>
+        <span class="detail-tag tag-mm">MM</span>
+      </div>
+    `
+  },
+  production: {
+    title: "Production Order — Perintah Produksi",
+    tcode: "CO01 / CO02",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>PPIC membuat Production Order untuk memproduksi barang yang dibutuhkan. Order ini akan melalui proses release, konfirmasi, dan goods receipt.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Siklus Produksi</h4>
+        <ul>
+          <li><strong>CO01:</strong> Create Production Order</li>
+          <li><strong>CO02:</strong> Release Order (status REL)</li>
+          <li><strong>CO11N:</strong> Confirmation (konfirmasi hasil produksi)</li>
+          <li><strong>MIGO:</strong> Goods Receipt (Movement 101)</li>
+          <li><strong>CO02:</strong> Technical Completion (TECO) & Close</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Setelah GR Produksi</h4>
+        <ul>
+          <li>Stok bertambah di gudang utama</li>
+          <li>ATP check Sales Order kembali terpenuhi</li>
+          <li>Schedule line confirmed → lanjut ke Delivery Order</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-pp">PP — Production</span>
+        <span class="detail-tag tag-mm">MM</span>
+      </div>
+    `
+  },
+  grproduction: {
+    title: "Goods Receipt Produksi",
+    tcode: "MIGO — Movement 101",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Setelah produksi selesai, barang di-receipt ke gudang utama. Stok bertambah dan Sales Order yang sebelumnya back order dapat diproses lanjut.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal Otomatis</h4>
+        <ul>
+          <li><strong>Dr.</strong> Inventory (Persediaan)</li>
+          <li><strong>Cr.</strong> Production Output (Hasil Produksi)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Dampak</h4>
+        <ul>
+          <li>Stok tersedia untuk delivery</li>
+          <li>Schedule line SO menjadi confirmed</li>
+          <li>Delivery Order dapat dibuat</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-mm">MM — Inventory</span>
+        <span class="detail-tag tag-pp">PP</span>
+      </div>
+    `
+  },
+  deliveryorder: {
+    title: "Delivery Order — Outbound Delivery",
+    tcode: "VL01N",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Outbound Delivery dibuat berdasarkan Sales Order yang sudah confirmed stock-nya. Dokumen ini menjadi dasar untuk picking, packing, dan goods issue.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data Utama</h4>
+        <ul>
+          <li>Referensi Sales Order</li>
+          <li>Shipping Point & Route</li>
+          <li>Ship-to Party (alamat pengiriman)</li>
+          <li>Material & Quantity</li>
+          <li>Picking Location</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output</h4>
+        <ul>
+          <li>Nomor Delivery (misal: 80000001)</li>
+          <li>Delivery Note</li>
+          <li>Picking List</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Shipping</span>
+      </div>
+    `
+  },
+  packing: {
+    title: "Packing / Pengemasan oleh Gudang",
+    tcode: "VL02N / HU Management",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Pihak gudang melakukan pengemasan barang sesuai dengan delivery order. Handling Unit (HU) dibuat untuk tracking fisik barang selama proses pengiriman.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Aktivitas</h4>
+        <ul>
+          <li>Picking barang dari storage bin</li>
+          <li>Packing ke dalam karton/pallet</li>
+          <li>Create Handling Unit (HU)</li>
+          <li>Print barcode & shipping label</li>
+          <li>Update picked quantity di VL02N</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Handling Unit</h4>
+        <ul>
+          <li>HU ID unik untuk setiap paket/pallet</li>
+          <li>Berisi info material, quantity, batch</li>
+          <li>Barcode untuk scanning</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-wm">WM/EWM</span>
+      </div>
+    `
+  },
+  pgi: {
+    title: "Post Goods Issue (PGI)",
+    tcode: "VL02N",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Post Goods Issue adalah titik kritis di mana stok berkurang dari gudang utama. Kepemilikan barang secara sistem berpindah. Ini menjadi trigger untuk billing (pada skenario A).</p>
+      </div>
+      <div class="detail-section">
+        <h4>Dampak di Sistem</h4>
+        <ul>
+          <li>📦 Stok berkurang (Movement Type 601)</li>
+          <li>📒 Accounting: Dr. COGS / Cr. Inventory</li>
+          <li>✅ Delivery status = Complete</li>
+          <li>🧾 Billing dapat diproses (Skenario A)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal Otomatis</h4>
+        <ul>
+          <li><strong>Dr.</strong> Cost of Goods Sold</li>
+          <li><strong>Cr.</strong> Inventory</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-mm">MM</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  invtransfer: {
+    title: "Inventory Transfer ke Gudang Virtual Penjualan",
+    tcode: "MIGO / MB1B (Movement 311/312)",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Setelah PGI, barang dipindahkan secara sistem dari Gudang Utama ke <strong>Gudang Virtual Penjualan</strong>. Ini adalah staging area virtual untuk barang yang siap dikirim tetapi masih dalam kontrol perusahaan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Tujuan Virtual WH</h4>
+        <ul>
+          <li>Memisahkan stok siap kirim dari stok utama</li>
+          <li>Memudahkan tracking per delivery order</li>
+          <li>Memberikan barcode unik per item</li>
+          <li>Dasar untuk marketing selection</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Proses Transfer</h4>
+        <ul>
+          <li>Transfer Posting: Storage Location Utama → Virtual WH Sales</li>
+          <li>Setiap item mendapat barcode unik</li>
+          <li>Mapping: Barcode ↔ Delivery Order ↔ Customer</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal</h4>
+        <ul>
+          <li><strong>Dr.</strong> Inventory — Virtual WH Sales</li>
+          <li><strong>Cr.</strong> Inventory — Main WH</li>
+          <li>(Tidak ada dampak nilai, hanya perpindahan lokasi)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-mm">MM — Inventory</span>
+        <span class="detail-tag tag-wm">WM</span>
+      </div>
+    `
+  },
+  barcodeselect: {
+    title: "Barcode Selection oleh Marketing",
+    tcode: "Virtual WH Lookup",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Tim marketing memilih barcode yang sesuai dengan delivery order yang sudah diinformasikan melalui modul inventory transfer. Barcode ini menjadi identitas fisik barang yang akan dikirim.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Proses</h4>
+        <ul>
+          <li>Marketing akses daftar barcode di Virtual WH</li>
+          <li>Cocokkan barcode dengan DO & customer</li>
+          <li>Scan/validasi barcode</li>
+          <li>Konfirmasi kesiapan barang</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Manfaat</h4>
+        <ul>
+          <li>Traceability penuh dari WH → customer</li>
+          <li>Mencegah kesalahan pengiriman</li>
+          <li>Memudahkan konsolidasi rute</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-mm">MM</span>
+        <span class="detail-tag tag-sd">SD</span>
+      </div>
+    `
+  },
+  consolidation: {
+    title: "Route Consolidation — Pengelompokan Rute",
+    tcode: "VT01 / Route Grouping",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Delivery orders yang memiliki rute pengiriman searah dikelompokkan menjadi satu tahap pengiriman untuk efisiensi. Misalnya: 5 DO ke area Jakarta Utara → 1 trip pengiriman.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Kriteria Pengelompokan</h4>
+        <ul>
+          <li>Zone/Area geografis yang sama</li>
+          <li>Route yang sama</li>
+          <li>Delivery date yang berdekatan</li>
+          <li>Kapasitas armada yang tersedia</li>
+          <li>Priority customer</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output</h4>
+        <ul>
+          <li>Shipment Group / Shipment Order</li>
+          <li>Route Plan & Schedule</li>
+          <li>Armada assignment</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD-LES</span>
+        <span class="detail-tag tag-mm">LE-TRA</span>
+      </div>
+    `
+  },
+  shipment: {
+    title: "Shipment Order — Perintah Pengiriman",
+    tcode: "VT01N",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Shipment Order dibuat sebagai perintah resmi ke pihak gudang dan armada untuk melakukan pengiriman. Berisi detail rute, armada, dan daftar DO yang akan dikirim.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Informasi Shipment</h4>
+        <ul>
+          <li>Shipment Number</li>
+          <li>Route & Stage (pengiriman)</li>
+          <li>Vehicle/Armada assignment</li>
+          <li>Driver information</li>
+          <li>Daftar Delivery Orders</li>
+          <li>Scheduled departure & arrival</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-mm">LE-TRA</span>
+      </div>
+    `
+  },
+  loading: {
+    title: "Loading ke Armada oleh Gudang",
+    tcode: "VL02N / LT03",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Pihak gudang melakukan loading barang dari area staging (Virtual WH) ke armada pengiriman. Proses ini disertai scanning barcode untuk validasi.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Aktivitas</h4>
+        <ul>
+          <li>Scan barcode setiap paket/HU</li>
+          <li>Muat ke armada sesuai route</li>
+          <li>Update status loading di sistem</li>
+          <li>Print surat jalan untuk driver</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-wm">WM/EWM</span>
+        <span class="detail-tag tag-mm">LE</span>
+      </div>
+    `
+  },
+  transit: {
+    title: "Status Transit — Virtual WH → Transit Sales",
+    tcode: "Inventory Transfer (Movement 313/314)",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Setelah loading, status gudang barang berpindah dari <strong>Virtual WH Sales</strong> ke <strong>Transit Sales (Ongoing)</strong>. Ini menandakan barang sedang dalam perjalanan ke konsumen.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Perpindahan Status Stok</h4>
+        <ul>
+          <li><strong>Sebelum Loading:</strong> Stok di Virtual WH Sales</li>
+          <li><strong>Setelah Loading:</strong> Stok di Transit Sales (Ongoing)</li>
+          <li><strong>Setelah POD:</strong> Stok keluar dari sistem perusahaan</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Tracking</h4>
+        <ul>
+          <li>Real-time status pengiriman</li>
+          <li>Driver location tracking</li>
+          <li>ETA (Estimated Time of Arrival)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal</h4>
+        <ul>
+          <li><strong>Dr.</strong> Inventory — Transit Sales</li>
+          <li><strong>Cr.</strong> Inventory — Virtual WH Sales</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-mm">MM</span>
+        <span class="detail-tag tag-wm">WM</span>
+      </div>
+    `
+  },
+  pod: {
+    title: "Proof of Delivery (POD) — Bukti Penerimaan",
+    tcode: "VL32N / POD Confirmation",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Pihak armada meminta Tanda Tangan (TTD) dan bukti penerimaan dari konsumen. Dokumen POD menjadi konfirmasi resmi bahwa barang telah diterima dengan baik.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Informasi POD</h4>
+        <ul>
+          <li>Tanda tangan penerima (digital/fisik)</li>
+          <li>Tanggal & waktu penerimaan</li>
+          <li>Nama & NIK penerima</li>
+          <li>Kondisi barang (baik/rusak)</li>
+          <li>Foto bukti pengiriman</li>
+          <li>Daftar item yang diterima</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Dampak di Sistem</h4>
+        <ul>
+          <li>✅ Delivery status = POD Confirmed</li>
+          <li>📦 Stok keluar dari Transit Sales</li>
+          <li>🧾 Trigger billing (Skenario B)</li>
+          <li>📊 Revenue recognition</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-mm">LE</span>
+      </div>
+    `
+  },
+  billingscenario: {
+    title: "Dual Billing Scenario",
+    tcode: "VF01",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Perusahaan dapat memilih salah satu dari dua skenario penerbitan faktur, tergantung kebijakan bisnis dan kesepakatan dengan pelanggan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Skenario A — Faktur Saat Pengiriman</h4>
+        <ul>
+          <li>Trigger: Post Goods Issue (PGI)</li>
+          <li>Faktur terbit bersamaan dengan pengiriman</li>
+          <li>Cocok untuk: transaksi tunai, pelanggan terpercaya</li>
+          <li>Keuntungan: cash flow lebih cepat</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Skenario B — Faktur Setelah Diterima</h4>
+        <ul>
+          <li>Trigger: Proof of Delivery (POD)</li>
+          <li>Faktur terbit setelah konsumen konfirmasi terima</li>
+          <li>Cocok untuk: pelanggan baru, transaksi kredit</li>
+          <li>Keuntungan: mengurangi komplain barang tidak sesuai</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Konfigurasi</h4>
+        <ul>
+          <li>Billing Type: F2 (Invoice), G2 (Credit Memo)</li>
+          <li>Billing Relevance: A (Delivery), B (Order)</li>
+          <li>Setting di VF01 / Copy Control</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Billing</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  billingA: {
+    title: "Skenario A — Faktur Saat Pengiriman",
+    tcode: "VF01 (Trigger: PGI)",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Faktur diterbitkan bersamaan dengan proses pengiriman barang (setelah PGI). Billing trigger berasal dari delivery, bukan POD.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Alur</h4>
+        <ul>
+          <li>PGI dilakukan → Delivery complete</li>
+          <li>Sistem otomatis izinkan billing</li>
+          <li>VF01 → Buat Billing Document</li>
+          <li>Faktur dikirim ke pelanggan</li>
+          <li>Barang masih dalam perjalanan (transit)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Cocok Untuk</h4>
+        <ul>
+          <li>Pelanggan existing dengan kepercayaan tinggi</li>
+          <li>Transaksi tunai/transfer di tempat</li>
+          <li>Perusahaan butuh cash flow cepat</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  billingB: {
+    title: "Skenario B — Faktur Setelah Diterima",
+    tcode: "VF01 (Trigger: POD)",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Faktur diterbitkan SETELAH konsumen menandatangani Proof of Delivery. Billing trigger berasal dari konfirmasi penerimaan barang.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Alur</h4>
+        <ul>
+          <li>PGI dilakukan → barang dikirim</li>
+          <li>Armada sampai → POD ditandatangani</li>
+          <li>POD confirmed di sistem</li>
+          <li>VF01 → Buat Billing Document</li>
+          <li>Faktur dikirim ke pelanggan</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Cocok Untuk</h4>
+        <ul>
+          <li>Pelanggan baru (belum terpercaya)</li>
+          <li>Transaksi kredit dengan terms</li>
+          <li>Barang bernilai tinggi</li>
+          <li>Menghindari dispute pengiriman</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  billing: {
+    title: "Billing Document — Terbit Faktur",
+    tcode: "VF01",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Billing Document (Faktur) dibuat baik dari trigger PGI (Skenario A) atau POD (Skenario B). Dokumen ini menjadi dasar penagihan ke pelanggan dan memicu posting ke modul FI.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data yang Diproses</h4>
+        <ul>
+          <li>Referensi Delivery / Order</li>
+          <li>Pricing dari Sales Order</li>
+          <li>Tax determination (PPN)</li>
+          <li>Payment Terms</li>
+          <li>Bill-to Party & Payer</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Dampak di FI</h4>
+        <ul>
+          <li>📒 Accounting Document otomatis dibuat</li>
+          <li><strong>Dr.</strong> Accounts Receivable (Piutang)</li>
+          <li><strong>Cr.</strong> Revenue (Pendapatan)</li>
+          <li><strong>Cr.</strong> Tax Payable (PPN)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Output</h4>
+        <ul>
+          <li>Nomor Billing (misal: 900000001)</li>
+          <li>Invoice PDF untuk pelanggan</li>
+          <li>Accounting Document Number</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD — Billing</span>
+        <span class="detail-tag tag-fi">FI — AR</span>
+      </div>
+    `
+  },
+  accountingdoc: {
+    title: "Accounting Document — Dokumen Akuntansi",
+    tcode: "FB03",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Accounting Document dibuat otomatis saat billing dipost. Menampilkan seluruh jurnal akuntansi yang terkait dengan transaksi penjualan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal Billing</h4>
+        <ul>
+          <li><strong>Dr.</strong> Customer AR (Piutang Dagang)</li>
+          <li><strong>Cr.</strong> Sales Revenue (Pendapatan)</li>
+          <li><strong>Cr.</strong> Output Tax / PPN (Utang Pajak)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI — General Ledger</span>
+      </div>
+    `
+  },
+  invoiceprint: {
+    title: "Invoice Output — Pengiriman Faktur",
+    tcode: "VF03 / Output Type RD00",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Faktur yang sudah terbit dikirim ke pelanggan melalui berbagai channel: cetak, email, atau portal digital.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Output Types</h4>
+        <ul>
+          <li><strong>RD00:</strong> Print out faktur</li>
+          <li><strong>RD03:</strong> Email faktur (PDF)</li>
+          <li><strong>RD04:</strong> EDI (Electronic Data Interchange)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Informasi di Faktur</h4>
+        <ul>
+          <li>Nomor Faktur & Tanggal</li>
+          <li>Due Date (jatuh tempo)</li>
+          <li>Detail item, harga, pajak</li>
+          <li>Total amount</li>
+          <li>Informasi rekening bank</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI</span>
+      </div>
+    `
+  },
+  paymentreceive: {
+    title: "Konsumen Melakukan Pembayaran",
+    tcode: "Payment Terms",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Konsumen wajib membayar hutangnya sesuai dengan payment terms yang disepakati (misal: Net 30, Net 60, COD, dll).</p>
+      </div>
+      <div class="detail-section">
+        <h4>Metode Pembayaran</h4>
+        <ul>
+          <li>Transfer Bank (RTGS/LLG/Online)</li>
+          <li>Cek / Bilyet Giro</li>
+          <li>Tunai (COD)</li>
+          <li>E-Wallet / Payment Gateway</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Payment Terms</h4>
+        <ul>
+          <li><strong>Net 30:</strong> Bayar dalam 30 hari</li>
+          <li><strong>2/10 Net 30:</strong> Diskon 2% jika bayar dalam 10 hari</li>
+          <li><strong>COD:</strong> Bayar di tempat</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI-AR</span>
+      </div>
+    `
+  },
+  incomingpayment: {
+    title: "Incoming Payment — Penerimaan Pembayaran",
+    tcode: "F-28",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Transaksi F-28 digunakan untuk mencatat penerimaan pembayaran dari pelanggan. Sistem melakukan posting ke bank account dan mengurangi piutang pelanggan.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Data yang Diinput</h4>
+        <ul>
+          <li>House Bank & Account ID</li>
+          <li>Customer Account</li>
+          <li>Amount & Currency</li>
+          <li>Assignment / Reference (nomor invoice)</li>
+          <li>Posting Date & Value Date</li>
+          <li>Payment Method</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Jurnal Otomatis</h4>
+        <ul>
+          <li><strong>Dr.</strong> Bank Account (Kas/Bank)</li>
+          <li><strong>Cr.</strong> Customer AR (Piutang Dagang)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Alternatif T-Code</h4>
+        <ul>
+          <li><strong>F-28:</strong> Incoming Payment (manual)</li>
+          <li><strong>FB05:</strong> Post with Clearing</li>
+          <li><strong>FBE5 / FEBAN:</strong> Electronic Bank Statement</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI — AR</span>
+      </div>
+    `
+  },
+  clearing: {
+    title: "Payment Clearing — Penghapusan Piutang",
+    tcode: "F-32 / FEBAN (Auto)",
+    body: `
+      <div class="detail-section">
+        <h4>Deskripsi</h4>
+        <p>Clearing adalah proses mencocokkan pembayaran dengan invoice yang outstanding. Setelah clearing, status invoice berubah dari "Open" menjadi "Cleared".</p>
+      </div>
+      <div class="detail-section">
+        <h4>Proses Clearing</h4>
+        <ul>
+          <li>Pilih customer account</li>
+          <li>Pilih open items (invoice) yang dibayar</li>
+          <li>Sistem match payment dengan invoice</li>
+          <li>Handle partial payment / residual items</li>
+          <li>Handle payment differences (discount, write-off)</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Electronic Bank Statement (EBS)</h4>
+        <ul>
+          <li>FF_5: Import bank statement</li>
+          <li>FEBAN: Post & auto-clearing</li>
+          <li>Auto-matching berdasarkan reference</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Clearing Document</h4>
+        <ul>
+          <li>Nomor Clearing Document dibuat</li>
+          <li>Clearing Date tercatat</li>
+          <li>Status invoice = Cleared</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul</h4>
+        <span class="detail-tag tag-fi">FI — AR Clearing</span>
+      </div>
+    `
+  },
+  end: {
+    title: "Proses Selesai — End-to-End Complete",
+    tcode: "—",
+    body: `
+      <div class="detail-section">
+        <h4>✅ End-to-End Sales to Cash Complete!</h4>
+        <p>Seluruh proses penjualan dari quotation hingga incoming payment telah selesai. Seluruh dokumen dan jurnal akuntansi telah tercatat di sistem.</p>
+      </div>
+      <div class="detail-section">
+        <h4>Ringkasan Dokumen yang Dihasilkan</h4>
+        <ul>
+          <li>📄 Sales Quotation</li>
+          <li> Sales Order</li>
+          <li>🏭 Production Order (jika back order)</li>
+          <li>🚚 Delivery Order</li>
+          <li>📦 Packing List / Handling Unit</li>
+          <li>🔄 Inventory Transfer Document (Virtual WH)</li>
+          <li>📱 Barcode Label</li>
+          <li>🗺️ Shipment Order (Route Consolidation)</li>
+          <li>🚛 Loading Document</li>
+          <li>✍️ Proof of Delivery (POD)</li>
+          <li>🧾 Billing / Invoice Document</li>
+          <li>📒 Accounting Documents (FI)</li>
+          <li>💰 Payment Document</li>
+          <li>✅ Clearing Document</li>
+        </ul>
+      </div>
+      <div class="detail-section">
+        <h4>Modul yang Terlibat</h4>
+        <span class="detail-tag tag-sd">SD</span>
+        <span class="detail-tag tag-fi">FI</span>
+        <span class="detail-tag tag-mm">MM</span>
+        <span class="detail-tag tag-pp">PP</span>
+        <span class="detail-tag tag-wm">WM/EWM</span>
+      </div>
+    `
+  }
+};
+
+function showDetail(key) {
+  const data = details[key];
+  if (!data) return;
+
+  document.getElementById('detailTitle').textContent = data.title;
+  document.getElementById('detailTcode').textContent = data.tcode;
+  document.getElementById('detailBody').innerHTML = data.body;
+
+  document.getElementById('detailPanel').classList.add('open');
+  document.getElementById('overlay').classList.add('show');
+}
+
+function closeDetail() {
+  document.getElementById('detailPanel').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+// Intersection Observer for fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+
+</body>
+</html>

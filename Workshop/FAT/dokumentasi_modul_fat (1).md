@@ -39,8 +39,8 @@ Logika perhitungan pajak disematkan secara mulus di berbagai modul transaksi (SO
 
 ### a. Variabel Kalkulasi (Subtotal, DPP, & Tax)
 Pada setiap *Controller* transaksi, sistem mengeksekusi `calculateHeaderTotals()` berdasarkan parameter `taxclude`:
-* `taxclude = 0` (Exclude): Pajak dihitung **di luar** subtotal. ($\text{DPP} = \text{Subtotal} - \text{Diskon}$).
-* `taxclude = 1` (Include): Pajak **sudah termasuk** di dalam harga barang. ($\text{DPP} = \text{Grand Total} / (1 + \text{Rate Pajak})$).
+* `taxclude = 0` (Exclude): Pajak dihitung **di luar** subtotal. (DPP = Subtotal - Diskon).
+* `taxclude = 1` (Include): Pajak **sudah termasuk** di dalam harga barang. (DPP = Grand Total / (1 + Rate Pajak)).
 
 ### b. Jurnal Pajak (VAT / PPN)
 * **Pajak Masukan (VAT In):** Dieksekusi otomatis saat GRPO atau *A/P Invoice*.

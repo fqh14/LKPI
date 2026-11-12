@@ -84,14 +84,14 @@
 
 ---
 
-### 7. 💰 UC, Diskon Proposal Form (DPF), Cashback, Advance, Expenses
+### 7. 💰 OC, Diskon Proposal Form (DPF), Cashback, Advance, Expenses
 
-#### 7.1 UC (Unit Credit / Usage Credit)
+#### 7.1 OC (Open Credit)
 | Komponen | Penjabaran |
 |---|---|
-| **Pengajuan UC** | Form pengajuan kredit/unit untuk pelanggan dengan limit dan tenor tertentu. |
-| **Approval & Limit** | Penetapan limit UC per pelanggan berdasarkan history dan credit scoring. |
-| **Monitoring Saldo UC** | Tracking sisa limit, penggunaan, dan jatuh tempo. |
+| **Pengajuan OC** | Form pengajuan open kredit/unit untuk pelanggan dengan limit dan tenor tertentu. |
+| **Approval & Limit** | Penetapan limit OC per pelanggan berdasarkan history dan credit scoring. |
+| **Monitoring Saldo Credit Limit** | Tracking sisa limit, penggunaan, dan jatuh tempo. |
 
 #### 7.2 Diskon Proposal Form (DPF) & Kontrol Harga
 | Komponen | Penjabaran |

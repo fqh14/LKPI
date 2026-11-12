@@ -1,0 +1,22 @@
+absensi
+visit
+input planning bersifat weekly (max jumat 23:59)
+input kunjungan realisasi sesuai planning
+input unplanned 
+input Sales Quotation (Penawaran Penjualan berdasarkan Surat Pesanan Outlet)
+input Gimik lewat Sales Quotation karena didalamnya ada pencatatan journal.
+input Sample lewat Sales Quotation karena ada nilai faktur PPN.
+input Support (bahan kemas / bracket) lewat Sales Quotation karena ada nilai barang.
+input ARCM dari sales, aproval dari PE, minta support label ke QA atau filing ke kemasan lebih kecil.
+input DPF (sales quotation)
+input UC pengajuan & realisasi, , CN(Credit Note), Uji Microba Pengajuan & Realisasi, Entertainment Voucher Pengajuan & Realisasi,  
+
+=========
+laporan stock
+laporan absensi
+laporan visit
+laporan planning dan realisasi
+laporan unplanned
+laporan sales quotation dan realisasi
+laporan penagihan
+laporan Top 10 berdasarkan invoice

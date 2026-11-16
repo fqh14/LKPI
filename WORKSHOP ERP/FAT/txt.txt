@@ -1,0 +1,31 @@
+Pemisahan pajak dalam rekening ppn atau tidak dan disertai bukti
+Pemisahan antara pengajuan dan pembelian
+
+Laporan monitoring pengajuan.
+
+TRISA Budget keinginan 
+Laporan Approval ACC, 
+Pengajuan PPN memisahkan NON PPN
+
+Penagihan spreadsheet, Titip faktur modul tersendiri untuk divisi AR dan berelasi dengan transaksi yang berjalan.
+
+Laporan penagihan AR untuk setiap RSM langsung detail ke tiap invoice, 
+Penambahan modul hierarki RSM > ASM > SF
+
+Penambahan Berita Acara untuk aproval credit limit, efek jera untuk sales untuk penahanan insentif sales secara keseluruhan di bulan tersebut.
+Credit Limit harus dibawah. 
+Open Credit Limit bersifat 
+
+Format template xml pph21
+Pengakuan bayar pajak berdasarkan status faktur kembali dan belum kembali
+Tax pengakuan tidak semua dibulan tersebut, bisa terjadi pengakuan penjualan di lakukan di bulan selanjutnya.
+
+AR Credit Memo dari sisi harus bersifat final, jadi dokumentasi diawal.
+
+WAPU khusus ditanyakan di KAMIS untuk Wajib Pungut.
+AP Invoice yang memiliki faktur pajak bersifat final tidak lewat GRPO.
+
+PPh unifikasi
+Pembelian disertai dengan pph atau tidak ada di dalam transaksi pembelian
+
+Laporan Keuangan pada database pajak,

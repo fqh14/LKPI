@@ -1,0 +1,10 @@
+1. Bill Of Material Master terdiri dari issue production dan receipt production dihandle oleh divisi Research and Development.
+2. Work Order itu anak dari Bill Of Material Master dihandle oleh PPIC dan disitu juga ada memilih batch bahan produksi sesuai vendor yang ada yang nantinya setiap work order akan menjadi jadwal produksi (production schedule) dan antar work order tidak bisa bertabrakan sesuai line produksi.
+3. Inventory Transfer Request dihandle oleh user produksi itu mengacu bahan issue production yang berasal dari workorder yang nantinya dari gudang bahan baku dan bahan kemas transfer ke floor produksi.
+4. Inventory Transfer Approve dihandle oleh user gudang sebagai surat balasan dari inventory transfer request.
+5. Issue production dihandle oleh user produksi berdasarkan bahan pemakaian dari work order.
+6. In Process Control dihandle oleh Quality Control di input sesuai dengan standar dan spesifikasi hasil produksi jika terjadi perbedaan spesifikasi atau batas toleransi contohnya pH kadar keasaman produk atau parameter lain maka disesuaikan yang hasilnya harus sesuai spesifikasi.
+7. Quarantine (fase karantina) disini dihandle oleh quality assurance jika ada parameter spesifikasi yang kurang maka akan ada penambahan.
+8. Receipt production dihandle oleh user produksi berdasarkan hasil produksi dari bahan pemakaian produksi dari work order.
+9. Inventory Transfer Request dihandle oleh user produksi untuk receipt production (hasil produksi).
+10. Inventory Transfer Approve dihandle oleh user warehouse untuk meletakkan hasil produksi ke gudang induk dan sesuai lokasi dan rak / bin.

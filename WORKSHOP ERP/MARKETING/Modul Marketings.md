@@ -265,7 +265,7 @@
 | **Input Sales Order** | Form input order langsung dari lapangan: produk, qty, harga, pelanggan, tanggal pengiriman. Wajib ditarik dari *Sales Quotation* (Copy From SQ). |
 | **Validasi Stok (Commitment)** | Pengecekan ketersediaan stok riil. Jika SO disetujui, sistem otomatis mem-booking stok (*Committed Stock*) agar tidak dijual ke orang lain. |
 | **Validasi Harga** | Pengecekan harga sesuai price list, diskon yang berlaku, DPF yang approved. |
-| **Credit Check** | Pengecekan limit kredit/UC pelanggan sebelum order diproses. |
+| **Credit Check** | Pengecekan limit kredit pelanggan sebelum order diproses. |
 | **Order Status** | Draft, Submitted, Approved, Processing, Shipped, Delivered, Completed, Cancelled. |
 | **Multi-channel Order** | Input order via PWA (field sales), telepon, email — semua terintegrasi. |
 | **Order History** | Riwayat lengkap semua order per pelanggan dengan detail perubahan. |

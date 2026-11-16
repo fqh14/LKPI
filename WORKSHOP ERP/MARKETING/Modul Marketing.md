@@ -18,7 +18,7 @@ Modul ini dirancang khusus sebagai aplikasi lapangan (*Mobile-First* / PWA) untu
 ### 💵 b. Keuangan Lapangan, Akomodasi, & Promosi
 * **Permintaan Akomodasi:** Pengajuan fasilitas penginapan, tiket, atau transportasi pendukung kunjungan lapangan.
 * **Pengajuan & Realisasi Support Dana / UC:** Pengelolaan dana dukungan operasional atau *Uang Cabang/Celengan* (UC) mulai dari pengajuan proposal hingga pertanggungjawaban realisasinya.
-* **Diskon Proposal Form (DPP) & Cashback:** Mekanisme pengajuan skema diskon khusus atau *cashback* bagi pelanggan dengan persetujuan berjenjang (*approval workflow*).
+* **Diskon Proposal Form (DPF) & Cashback:** Mekanisme pengajuan skema diskon khusus atau *cashback* bagi pelanggan dengan persetujuan berjenjang (*approval workflow*).
 * **Advance & Expenses:** Pengelolaan kasbon muka (*advance*) operasional lapangan serta pelaporan pertanggungjawaban pengeluaran riil (*expenses*) beserta lampiran bukti transaksi.
 
 ### 🗓️ c. Administrasi, Event, & Pelayanan Pelanggan

@@ -1,0 +1,18 @@
+seleksi pemasok dari bahan baku atau bahan kemas.
+pemasok akan mengirimkan sample ke bagian R&D
+request dan approval dari seleksi pemasok
+meminta dokumen legalitas dari pemasok
+
+evaluasi pemasok dilakukan 6bulan sekali
+
+ada tipe pembayaran di outgoingpayment yang tipe deposit
+
+pembelian dalam CURR lain
+
+
+Botol 
+
+Delivery Order > Pack > Load | dari cancel akan rollback ke tahap sebelumnya.
+
+itemcode to konversi
+cyclecount dan stockopname

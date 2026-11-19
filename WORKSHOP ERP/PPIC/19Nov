@@ -1,0 +1,8 @@
+Backorder produksi, backorder penjualan, stock available, purchase request, daily book produksi.
+
+Backorder produksi by sistem.
+Backorder penjualan by sistem.
+PR by sistem. Skala prioritas pembelian berdasarkan backorder produksi & stock available.
+Daily book produksi by workorder (user)
+Backorder purchase request.
+
